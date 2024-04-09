@@ -1,0 +1,31 @@
+#!/bin/bash -l
+#SBATCH -J si2
+#SBATCH -t 0:30:00
+#SBATCH -A stf218
+#SBATCH -N 1
+#SBATCH -C nvme
+#SBATCH --exclusive 
+#SBATCH --ntasks-per-node=8
+#SBATCH -o si2.o%j
+
+source env.sh
+
+ROOT=/lustre/orion/scratch/junqi/stf218/chathpc/chatHPC
+MODEL=$ROOT/preprocss/llama/llama-2-70b-chat
+TOKENIZER=$ROOT/preprocss/llama/tokenizer.model
+JIRA=../../data/frontier/ticket/
+DOC=../../data/samples/frontier_user_guide.jsonl
+CMD="python -u parse_jira.py --ckpt_dir ${MODEL} \
+                        --tokenizer_path ${TOKENIZER}\
+                        --ticket_path ${JIRA}\
+"
+
+NUM_RANKS=`expr ${SLURM_NNODES} \* ${SLURM_NTASKS_PER_NODE}`
+NUM_RANKS_PER_NODE=${SLURM_NTASKS_PER_NODE}
+
+
+HOME=/tmp srun --nodes=${SLURM_NNODES} --ntasks=${NUM_RANKS} --ntasks-per-node=${NUM_RANKS_PER_NODE} -c7 --gpus-per-node=8  bash -c "\
+    source setup_ddp.sh && $CMD \
+    " >& log
+
+
