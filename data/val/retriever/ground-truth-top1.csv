@@ -1,0 +1,722 @@
+prompt,doc
+"How do I turn off MFA4 for VisIt?
+","If you use multi-factor authentication (MFA4) with a smartcard or yubikey when connecting to our systems, this does not work with VisIt. VisIt only accepts RSA PIN+tokencodes, so you will have to change your SSH config settings (typically within a .ssh/config file) and temporarily turn off MFA4.
+
+
+
+The OLCF VisIt Tutorial on Andes is a beginner friendly tutorial for getting started on Andes with example datasets.
+
+The VisIt User Manual contains all information regarding the CLI and the GUI."
+"How do I access my repository settings in Slate?
+","Here you will have the option to select from a number of container images. Select the one that matches the source code in the git repository that you will be using. In this example we'll be using Python.
+
+Using the drop down menu select the version of the language that your source is written in and click Select.
+
+Then input the repo that contains the repository you wish to use."
+"What is the benefit of using HIP APIs to manually migrate memory regions on Frontier?
+","If HSA_XNACK=0, page faults in GPU kernels are not handled and will terminate the kernel. Therefore all memory locations accessed by the GPU must either be resident in the GPU HBM or mapped by the HIP runtime. Memory regions may be migrated between the host DDR4 and GPU HBM using explicit HIP library functions such as hipMemAdvise and hipPrefetchAsync, but memory will not be automatically migrated based on access patterns alone."
+"What is the architecture of the current R version that I am using?
+","If we do that and launch R, then we see:
+
+version
+## platform       powerpc64le-unknown-linux-gnu
+## arch           powerpc64le
+## os             linux-gnu
+## system         powerpc64le, linux-gnu
+## status
+## major          3
+## minor          6.1
+## year           2019
+## month          07
+## day            05
+## svn rev        76782
+## language       R
+## version.string R version 3.6.1 (2019-07-05)
+## nickname       Action of the Toes"
+"Can you explain the purpose of a ""queue reservation"" in the context of the OLCF Policy?
+","must be requested if this occurs. Since a reservation makes resources
+
+unavailable to the general user population, projects that are granted
+
+reservations will be charged (regardless of their actual utilization) a
+
+CPU-time equivalent to
+
+``(# of cores reserved) * (length of reservation in hours)``.
+
+
+
+This details an official policy of the OLCF, and must be agreed to by the following persons as a condition of access to and use of OLCF computational resources:  INCITE Principal Investigators  Title: INCITE Allocation Under-utilization Policy Version: 12.10"
+"What is the difference between the hipv4-amdgcn-amd-amdhsa--gfx90a and host-x86_64-unknown-linux URIs?
+",":1:hip_code_object.cpp      :461 : 43966602810 us:   Devices:
+:1:hip_code_object.cpp      :464 : 43966602811 us:     amdgcn-amd-amdhsa--gfx90a:sramecc+:xnack- - [Not Found]
+:1:hip_code_object.cpp      :464 : 43966602811 us:     amdgcn-amd-amdhsa--gfx90a:sramecc+:xnack- - [Not Found]
+:1:hip_code_object.cpp      :464 : 43966602812 us:     amdgcn-amd-amdhsa--gfx90a:sramecc+:xnack- - [Not Found]
+:1:hip_code_object.cpp      :464 : 43966602813 us:     amdgcn-amd-amdhsa--gfx90a:sramecc+:xnack- - [Not Found]"
+"What is kustomize and how does it relate to ArgoCD?
+","Before going into how ArgoCD will use a kustomize configuration setup, a word about organizing the code repository. Prior to starting work with kustomize, take some time to consider what makes sense for setting up the directory of repository. Looking at the GitHub repository for kustomize, there is a kustomize Hello World document illustrating the basic layout to start with:"
+"Can I enable instrumentation of headers in TAU?
+","TAU is a portable profiling and tracing toolkit that supports many programming languages. The instrumentation can be done by inserting in the source code using an automatic tool based on the Program Database Toolkit (PDT), on the compiler instrumentation, or manually using the instrumentation API.
+
+Webpage: https://www.cs.uoregon.edu/research/tau/home.php"
+"What is the purpose of the ""Additional arguments"" field in the launch profile?
+","<Set name=""TERM_ARG3"" value=""-e"" />
+            <Set name=""SSH_PATH"" value=""ssh"" />
+          </Case>
+          <Case value=""Windows"">
+            <Set name=""TERM_PATH"" value=""cmd"" />
+            <Set name=""TERM_ARG1"" value=""/C"" />
+            <Set name=""TERM_ARG2"" value=""start"" />
+            <Set name=""TERM_ARG3"" value="""" />
+            <Set name=""SSH_PATH"" value=""plink.exe"" />
+          </Case>
+          <Case value=""Unix"">
+            <Set name=""TERM_PATH"" value=""xterm"" />
+            <Set name=""TERM_ARG1"" value=""-T"" />
+            <Set name=""TERM_ARG2"" value=""ParaView"" />"
+"What are some of the features of DDT in Andes?
+",For Andes:
+"Can I use the conda create command to create an environment for Cupy on Andes?
+","The guide is designed to be followed from start to finish, as certain steps must be completed in the correct order before some commands work properly.
+
+This guide teaches you how to build CuPy from source into a custom virtual environment. On Summit and Andes, this is done using conda, while on Frontier this is done using venv.
+
+In this guide, you will:
+
+Learn how to install CuPy
+
+Learn the basics of CuPy
+
+Compare speeds to NumPy
+
+OLCF Systems this guide applies to:
+
+Summit
+
+Frontier
+
+Andes"
+"What is the difference between `amp.initialize()` and `amp.init_trainer()` in Summit?
+","Finally, run the demo program by executing the following commands from a Summit login node:
+
+$ source setup.bash
+$ python3 demo.py3
+
+Congratulations! You should now see interactive output from EnTK while it launches and monitors your job on Summit."
+"How can I run pyQuil on the compute nodes without using the proxy server?
+","export all_proxy=socks://proxy.ccs.ornl.gov:3128/
+export ftp_proxy=ftp://proxy.ccs.ornl.gov:3128/
+export http_proxy=http://proxy.ccs.ornl.gov:3128/
+export https_proxy=http://proxy.ccs.ornl.gov:3128/
+export no_proxy='localhost,127.0.0.0/8,*.ccs.ornl.gov'
+
+These settings currently do not work for pyQuil; thus, when running pyQuil on the compute nodes, you are unable to connect to Rigetti's machines and can only run local simulators. To be able to connect to Rigetti's machines, you'll have to run on the login nodes instead."
+"How can I troubleshoot deployment issues on ArgoCD?
+",Image of ArgoCD new application general settings.
+"What are the default TAU metrics?
+","TAU is a portable profiling and tracing toolkit that supports many programming languages. The instrumentation can be done by inserting in the source code using an automatic tool based on the Program Database Toolkit (PDT), on the compiler instrumentation, or manually using the instrumentation API.
+
+Webpage: https://www.cs.uoregon.edu/research/tau/home.php"
+"Is there a fix for the metadata server error on Andes?
+","If you see an error similar to ""The metadata server on host andes.olcf.ornl.gov could not be launched or it could not connect back to your local computer"" with the specific error listed as ""The reason for the exception was not described"", double check your host profiles. This bug may occur when you have two or more host profiles that represent the same system (e.g., if you have two host profiles that connect to andes.olcf.ornl.gov, but may have different settings / usernames for both). This bug can affect both Summit and Andes."
+"What are the features of the OpenGL renderer?
+","Info) [2] Tesla K80          13 SM_3.7 @ 0.82 GHz, 11GB RAM, AE2, ZCP
+Info) [3] Tesla K80          13 SM_3.7 @ 0.82 GHz, 11GB RAM, AE2, ZCP
+Warning) Detected X11 'Composite' extension: if incorrect display occurs
+Warning) try disabling this X server option.  Most OpenGL drivers
+Warning) disable stereoscopic display when 'Composite' is enabled.
+Info) OpenGL renderer: Tesla K80/PCIe/SSE2
+Info)   Features: STENCIL MSAA(4) MDE CVA MTX NPOT PP PS GLSL(OVFGS)
+Info)   Full GLSL rendering mode is available.
+Info)   Textures: 2-D (16384x16384), 3-D (2048x2048x2048), Multitexture (4)"
+"What is the name of the resource set that will have access to GPUs 0-2 on the first socket of the first node?
+","In this case, all 6 CPUs can see 3 GPUs. Code must manage CPU -> GPU communication. CPUs on socket0 can not access GPUs or Memory on socket1.
+
+Single resource set per node: 6 GPUs, 12 cores
+
+
+
+In this case, all 12 CPUs can see all node’s 6 GPUs. Code must manage CPU to GPU communication. CPUs on socket0 can access GPUs and Memory on socket1. Code must manage cross socket communication."
+"How do I handle libraries that are opened by `dlopen` on Frontier?
+","# libfabric dlopen's several libraries:
+export LD_LIBRARY_PATH=""${LD_LIBRARY_PATH}:$(pkg-config --variable=libdir libfabric)""
+
+# cray-mpich dlopen's libhsa-runtime64.so and libamdhip64.so (non-versioned), so symlink on each node:
+srun -N ${SLURM_NNODES} -n ${SLURM_NNODES} --ntasks-per-node=1 --label -D /mnt/bb/$USER/${exe}_libs \
+    bash -c ""if [ -f libhsa-runtime64.so.1 ]; then ln -s libhsa-runtime64.so.1 libhsa-runtime64.so; fi;
+    if [ -f libamdhip64.so.5 ]; then ln -s libamdhip64.so.5 libamdhip64.so; fi"""
+"How can individuals or teams submit a proposal for SummitPLUS?
+","Individuals or teams interested in SummitPLUS must submit a proposal through the https://my.olcf.ornl.gov/ portal from September 19 to October 30.  Once on the portal, go to “New Accounts” across the top and then “Project Application”. Choose the SummitPLUS form from the dropdown list.
+
+Summit will continue to be allocated in node hours, and a typical SummitPLUS award will be between 100,000 – 250,000 node hours. The proposals will undergo review and the OLCF will notify awardees in mid-to-late November. Projects are anticipated to start in mid-to-late January 2024.
+
+Timeline"
+"What is the purpose of the TCC_EA_WRREQ_64B metric on Crusher?
+","Arithmetic intensity calculates the ratio of FLOPS to bytes moved between HBM and L2 cache. We calculated FLOPS above (FP64_FLOPS). We can calculate the number of bytes moved using the rocprof metrics TCC_EA_WRREQ_64B, TCC_EA_WRREQ_sum, TCC_EA_RDREQ_32B, and TCC_EA_RDREQ_sum. TCC refers to the L2 cache, and EA is the interface between L2 and HBM. WRREQ and RDREQ are write-requests and read-requests, respectively. Each of these requests is either 32 bytes or 64 bytes. So we calculate the number of bytes traveling over the EA interface as:
+
+BytesMoved = BytesWritten + BytesRead
+
+where"
+"How can I run a job on multiple nodes on Summit?
+","to service nodes on that system). All commands within your job script (or the commands you run in an interactive job) will run on a launch node. Like login nodes, these are shared resources so you should not run multiprocessor/threaded programs on Launch nodes. It is appropriate to launch the jsrun command from launch nodes. | | Compute | Most of the nodes on Summit are compute nodes. These are where your parallel job executes. They're accessed via the jsrun command. |"
+"Can I use SMT on Summit for both CPU-bound and GPU-bound workloads?
+","Hardware threads are a feature of the POWER9 processor through which individual physical cores can support multiple execution streams, essentially looking like one or more virtual cores (similar to hyperthreading on some Intel      microprocessors). This feature is often called Simultaneous Multithreading or SMT. The POWER9 processor on Summit supports SMT levels of 1, 2, or 4, meaning (respectively) each physical core looks like 1, 2, or 4 virtual cores. The SMT level is controlled by the -alloc_flags option to bsub. For example, to set the SMT level to 2, add the line #BSUB –alloc_flags"
+"What is the purpose of the OLCF's HPSS?
+",The High Performance Storage System (HPSS) is the tape-archive storage system at the OLCF and is the storage technology that supports the User Archive areas. HPSS is intended for data that do not require day-to-day access.
+"How do I collect a timeline of my application on Summit?
+",For Summit:
+"Where can I find more information about the retention timeframes for each user-centric storage area?
+","The following table details quota, backup, purge, and retention information for each user-centric and project-centric storage area available at the OLCF.
+
+User-Centric Storage Areas
+
+| Area | Path | Type | Permissions | Quota | Backups | Purged | Retention | On Compute Nodes | | --- | --- | --- | --- | --- | --- | --- | --- | --- | | User Home | /ccs/home/[userid] | NFS | User set | 50 GB | Yes | No | 90 days | Read-only | | User Archive 1 | /home/[userid] | HPSS | User set | 2TB | No | No | 90 days | No | | User Archive 2 | /home/[userid] | HPSS | 700 | N/A | N/A | N/A | N/A | No |"
+"What is the version of the libamdhip64.so.4 library used in Frontier?
+","librocfft.so.0 => /opt/rocm-5.3.0/lib/librocfft.so.0 (0x00007fffdca1a000)
+    libz.so.1 => /lib64/libz.so.1 (0x00007fffdc803000)
+    libtinfo.so.6 => /lib64/libtinfo.so.6 (0x00007fffdc5d5000)
+    libcxi.so.1 => /usr/lib64/libcxi.so.1 (0x00007fffdc3b0000)
+    libcurl.so.4 => /usr/lib64/libcurl.so.4 (0x00007fffdc311000)
+    libjson-c.so.3 => /usr/lib64/libjson-c.so.3 (0x00007fffdc101000)
+    libpals.so.0 => /opt/cray/pe/lib64/libpals.so.0 (0x00007fffdbefc000)
+    libgfortran.so.5 => /opt/cray/pe/gcc-libs/libgfortran.so.5 (0x00007fffdba50000)"
+"What is the requirement for source IP addresses in the OLCF Policy?
+","3. Prior to your project being initialized, we must have source IP addresses for devices in your organization that are authorized to transfer sensitive/controlled information to/from your organization, or for use in accessing that information. Encryption is necessary for transferring sensitive and/or controlled information to and from the OLCF."
+"How can the Volume Snapshot be deleted?
+","apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: snapshot-pvc
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+
+We can now create a VolumeSnapshot, which will capture the data in the PersistentVolume that was provisioned by the named PersistentVolumeClaim at the time the VolumeSnapshot is created, to backup the data.
+
+apiVersion: snapshot.storage.k8s.io/v1beta1
+kind: VolumeSnapshot
+metadata:
+  # Name of VolumeSnapshot
+  name: pvc-snap
+spec:
+  source:
+    # Name of persistentVolumeClaim to snapshot
+    persistentVolumeClaimName: snapshot-pvc"
+"Are there any tools available to automate the NVMe transfer and data management process on Summit?
+","Remember that by default NVMe support one file per MPI process up to one file per compute node. If users desire a single file as output from data staged on the NVMe they will need to construct it.  Tools to save automatically checkpoint files from NVMe to GPFS as also methods that allow automatic n to 1 file writing with NVMe staging are under development.   Tutorials about NVME:   Burst Buffer on Summit (slides, video) Summit Burst Buffer Libraries (slides, video)."
+"What programming models are available for programming GPUs at the hackathons?
+","A GPU hackathon is a multi-day coding event in which teams of developers port their own applications to run on GPUs, or optimize their applications that already run on GPUs. Each team consists of 3 or more developers who are intimately familiar with (some part of) their application, and they work alongside 1 or more mentors with GPU programming expertise. Our mentors come from universities, national laboratories, supercomputing centers, and industry partners."
+"What is the purpose of the `simulate` section in the pmake-example/rules.yaml file?
+","Inside the simulation directory, you should see 3 new files, simulate.sh, which contains the shell script pmake built from the simulate rule, simulate.log, containing the log output from running simulate.sh, and run.log, the file written during rule execution.
+
+Extending pmake using your own rules is straightforward. pmake acts like make, running rules to create output files (that do not yet exist) from input files (that must exist before the rule is run).
+
+Unlike make, pmake does not run a rule unless its output is requested by some target."
+"What is the benefit of using a StatefulSet instead of a normal Deployment?
+","We will be deploying MongoDB with a StatefulSet. This is a special kind of deployment controller that is different from a normal Deployment in a few distinct ways and is primarily meant for for applications that rely on well known names for each pod.
+
+We will create a Service with the StatefulSet because the StatefulSet controller requires a headless service in order to provide well-known DNS identifiers."
+"What is the purpose of the ""COPY cudaexample.cu /app"" command in the Dockerfile?
+","for (int i = 0; i<N; ++i) {
+    if(i+i != hb[i]) {
+        printf(""Something went wrong in the GPU calculation\n"");
+    }
+}
+printf(""COMPLETE!"");
+     cudaFree(da);
+     cudaFree(db);
+
+     return 0;
+}
+
+Create a file named gpuexample.dockerfile with the following contents
+
+FROM code.ornl.gov:4567/olcfcontainers/olcfbaseimages/mpiimage-centos-cuda:latest
+RUN mkdir /app
+COPY cudaexample.cu /app
+RUN cd /app && nvcc -o cudaexample cudaexample.cu
+
+Run the following commands to build the container image with Podman and convert it to Singularity"
+"What is the advantage of running pyQuil on the login nodes instead of the compute nodes?
+","Recall from the System Overview that Frontier contains two node types: Login and Compute. When you connect to the system, you are placed on a login node. Login nodes are used for tasks such as code editing, compiling, etc. They are shared among all users of the system, so it is not appropriate to run tasks that are long/computationally intensive on login nodes. Users should also limit the number of simultaneous tasks on login nodes (e.g. concurrent tar commands, parallel make"
+"How can I search for a specific version of a module in Frontier?
+","Modules with dependencies are only available when the underlying dependencies, such as compiler families, are loaded. Thus, module avail will only display modules that are compatible with the current state of the environment. To search the entire hierarchy across all possible dependencies, the spider sub-command can be used as summarized in the following table."
+"How can we download image data from the NOAA website periodically?
+","In order to demonstrate the data generation, we have a script that downloads image data from the NOAA website periodically. The image is a geographical image showing current cloud cover over south-east US. The code gendata.sh looks like so:
+
+#!/bin/bash
+set -eu
+
+function cleanup() {
+  \rm -f ./data/earth*.jpg
+}
+
+while true
+do
+  uid=$(uuidgen | awk -F- '{print $1}')
+  wget -q https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/se/GEOCOLOR/1200x1200.jpg -O ./data/earth${uid}.jpg
+  sleep 5
+  trap cleanup EXIT
+done"
+"What is the purpose of the ""Launcher arguments"" section under the ""Advanced"" tab in VisIt?
+","VisIt is now available on Frontier through the UMS022 module.
+
+VisIt 3.3.3 is now available on Andes.
+
+VisIt is an interactive, parallel analysis and visualization tool for scientific data. VisIt contains a rich set of visualization features so you can view your data in a variety of ways. It can be used to visualize scalar and vector fields defined on two- and three-dimensional (2D and 3D) structured and unstructured meshes. Further information regarding VisIt can be found at the links provided in the https://docs.olcf.ornl.gov/systems/visit.html#visit-resources section."
+"Can I modify or delete information or programs on OLCF systems without authorization?
+","Users are prohibited from taking unauthorized actions to intentionally modify or delete information or programs.
+
+The OLCF reserves the right to remove any data at any time and/or transfer data to other users working on the same or similar project once a user account is deleted or a person no longer has a business association with the OLCF. After a sensitive project has ended or has been terminated, all data related to the project must be purged from all OLCF computing resources within 30 days."
+"How do I modify an existing host profile in VisIt?
+","Another solution is to delete all copies of a host profile (including the original) and remake them. This can be achieved with the ""Delete Host"" button in the Host Profiles window. Make sure to save your settings after deleting the profiles, exit and restart VisIt, and then proceed with remaking your profiles.
+
+If none of the above solutions work for you, the final option would be to delete the duplicate host profile entirely and just modify the settings of the original when needed."
+"Where are the member work directories located?
+",The difference between the three lies in the accessibility of the data to project members and to researchers outside of the project. Member Work directories are accessible only by an individual project member by default. Project Work directories are accessible by all project members. World Work directories are readable by any user on the system.
+"What is the purpose of the #SBATCH command in the batch script?
+","The shell commands follow the last #SBATCH option and represent the executable content of the batch job. If any #SBATCH lines follow executable statements, they will be treated as comments only."
+"How do I activate my new environment in Conda at OLCF?
+","By default this should create the cloned environment in /ccs/home/${USER}/.conda/envs/cloned_env (unless you changed it, as outlined in our https://docs.olcf.ornl.gov/software/python/index.html page).
+
+To activate the new environment you should still load the module first. This will ensure that all of the conda settings remain the same.
+
+$ module load open-ce
+(open-ce-1.2.0-py38-X) $ conda activate cloned_env
+(cloned_env) $"
+"How does hipMalloc differ from hipHostMalloc in terms of CPU access?
+","Finally, the following table summarizes the nature of the memory returned based on the flag passed as argument to hipMallocManaged() and the use of CPU regular malloc() routine with the possible use of hipMemAdvise().
+
+| API | MemAdvice | Result | | --- | --- | --- | | hipMallocManaged() |  | Fine grained | | hipMallocManaged() | hipMemAdvise (hipMemAdviseSetCoarseGrain) | Coarse grained | | malloc() |  | Fine grained | | malloc() | hipMemAdvise (hipMemAdviseSetCoarseGrain) | Coarse grained |"
+"How can I view the status of my job using the Slurm job ID?
+","$ squeue -l -u $USER
+
+The Slurm utility sacct can be used to view jobs currently in the queue and those completed within the last few days. The utility can also be used to see job steps in each batch job.
+
+To see all jobs currently in the queue:
+
+$ sacct -a -X
+
+To see all jobs including steps owned by userA currently in the queue:
+
+$ sacct -u userA
+
+To see all steps submitted to job 123:
+
+$ sacct -j 123
+
+To see all of your jobs that completed on 2019-06-10:
+
+$ sacct -S 2019-06-10T00:00:00 -E 2019-06-10T23:59:59 -o""jobid,user,account%16,cluster,AllocNodes,Submit,Start,End,TimeLimit"" -X -P"
+"Can I access my data on Slate from any device?
+","The question ""what is a workflow system"" usually starts a spirited debate. Here, we will be referring to software or sets of tools used to automate processes and tasks on Slate. In addition to the Slate platform, these processes and tasks may utilize other NCCS compute and storage systems."
+"Can I limit the number of tasks per node on Frontier?
+","Recall from the System Overview that Frontier contains two node types: Login and Compute. When you connect to the system, you are placed on a login node. Login nodes are used for tasks such as code editing, compiling, etc. They are shared among all users of the system, so it is not appropriate to run tasks that are long/computationally intensive on login nodes. Users should also limit the number of simultaneous tasks on login nodes (e.g. concurrent tar commands, parallel make"
+"How does quantum computing differ from classical computing in terms of information storage?
+","Conventional/classical computing utilizes information storage based on digital devices storing “bits”, which are in either of two distinct states at a given time, i.e. 0 or 1. Quantum computers utilize properties of quantum mechanics, such as superposition and entanglement, in order to exceed certain capabilities of classical computers. Superposition means that the units of information storage can be in multiple states at the same time, and entanglement means the states can depend on each other.  In quantum computing systems, information is stored not using “bits”, but instead using “qubits”."
+"What is the output function in TAU used for?
+","&+ SQ\_INSTS\_VALU\_MUL\_F64       \\\\
+                     &+ SQ\_INSTS\_VALU\_TRANS\_F64     \\\\
+                     &+ 2 * SQ\_INSTS\_VALU\_FMA\_F64)  \\\\
+              + 1024 &*(SQ\_INSTS\_VALU\_MFMA\_MOPS\_F16) \\\\
+              + 1024 &*(SQ\_INSTS\_VALU\_MFMA\_MOPS\_BF16) \\\\
+              + 256 *&(SQ\_INSTS\_VALU\_MFMA\_MOPS\_F32) \\\\
+              + 256 *&(SQ\_INSTS\_VALU\_MFMA\_MOPS\_F64) \\\\"
+"How can I see the output of the pmake job?
+","<string>:5: (INFO/1) Duplicate implicit target name: ""pmake"".
+
+pmake is a parallel make developed for use within batch jobs.  A rules.yaml file specifies extended make-rules with:
+
+multiple input and multiple output files
+
+a resource-set specification
+
+a multi-line shell script that can use variable substitution (e.g. {mpirun} expands to {jsrun -g -c ...} on summit).
+
+Full documentation and examples are available in https://code.ornl.gov/99R/pmake."
+"What is the difference between the moderate and open DTNs at OLCF?
+",The Data Transfer Nodes (DTNs) are hosts specifically designed to provide optimized data transfer between OLCF systems and systems outside of the OLCF network. These nodes perform well on local-area transfers as well as the wide-area data transfers for which they are tuned. The OLCF recommends that users use these nodes to improve transfer speed and reduce load on computational systems’ login and service nodes. OLCF provides two sets of DTNs: one for systems in our moderate enclave and a second for systems in the open enclave.
+"Can I use the Rigetti Quantum Computing environment for machine learning applications?
+","Rigetti currently offers access to their systems via their Quantum Cloud Services (QCS).  With QCS, Rigetti's quantum processors (QPUs) are tightly integrated with classical computing infrastructure and made available to you over the cloud. Rigetti also provides users with quantum computing example algorithms for optimization, quantum system profiling, and other applications.
+
+A list of available Rigetti systems/QPUs, along with their performance statistics, can be found on the Rigetti Systems Page."
+"What is the purpose of the MinIO standalone Helm chart's README file?
+","Where you cloned the slate_helm_examples repository, in the 'slate_helm_examples/charts/minio-standalone` directory, you will see a values.yaml file. This file containes variables for the Helm chart deployment.
+
+This is how we configure your instance of the MinIO application. All of these changes will be to your local copy of values.yaml.
+
+Here is what it looks like:"
+"How do I launch the compiler server for pyQuil?
+","With the way pyQuil works, you need to launch its compiler server, launch the virtual machine / simulator QVM server, and then launch your pyQuil Python program on the same host. Running a Python script will ping and utilize both the compiler and QVM servers. As a proof of concept, this has been done on a single login node and the steps are outlined below.
+
+Using your already created ENV_NAME virtual environment (outlined above):
+
+(ENV_NAME)$ quilc -P -S > quilc.log 2>&1 & qvm -S > qvm.log 2>&1 & python3 script.py ; kill $(jobs -p)"
+"How can I set the OLCF_ESSL_ROOT environment variable on Summit?
+","]])
+
+When this module is loaded, the $OLCF_ESSL_ROOT environment variable holds the path to the ESSL installation, which contains the lib64/ and include/ directories:
+
+summit$ module load essl
+summit$ echo $OLCF_ESSL_ROOT
+/sw/summit/essl/6.1.0-1/essl/6.1
+summit$ ls $OLCF_ESSL_ROOT
+FFTW3  READMES  REDIST.txt  include  iso-swid  ivps  lap  lib64  man  msg
+
+The following screencast shows an example of linking two libraries into a simple program on Summit. https://vimeo.com/292015868"
+"What is the purpose of the `dlopen` command?
+","# libfabric dlopen's several libraries:
+export LD_LIBRARY_PATH=""${LD_LIBRARY_PATH}:$(pkg-config --variable=libdir libfabric)""
+
+# cray-mpich dlopen's libhsa-runtime64.so and libamdhip64.so (non-versioned), so symlink on each node:
+srun -N ${SLURM_NNODES} -n ${SLURM_NNODES} --ntasks-per-node=1 --label -D /mnt/bb/$USER/${exe}_libs \
+    bash -c ""if [ -f libhsa-runtime64.so.1 ]; then ln -s libhsa-runtime64.so.1 libhsa-runtime64.so; fi;
+    if [ -f libamdhip64.so.5 ]; then ln -s libamdhip64.so.5 libamdhip64.so; fi"""
+"Implement a quantum algorithm for solving linear systems of equations using PennyLane.
+","PennyLane is a cross-platform Python library for programming quantum computers.  Its differentiable programming paradigm enables the execution and training of quantum programs on various backends.
+
+General information of how to install and use PennyLane can be found here:
+
+https://docs.pennylane.ai/en/stable/introduction/pennylane.html
+
+https://pennylane.ai/qml/demos_getting-started.html
+
+https://pennylane.ai/install.html
+
+On our systems, the install method is relatively simple:
+
+Andes
+
+.. code-block:: bash"
+"How do I optimize the performance of my GPU kernels on Summit?
+","Summit's V100 GPUs are configured to have a default compute mode of EXCLUSIVE_PROCESS. In this mode, the GPU is assigned to only a single process at a time, and can accept work from multiple process threads concurrently.
+
+It may be desirable to change the GPU's compute mode to DEFAULT, which enables multiple processes and their threads to share and submit work to it simultaneously. To change the compute mode to DEFAULT, use the -alloc_flags gpudefault option."
+"How can I create a route in Slate?
+","Routes can also be created from the web interface. On the hamburger menu, click Networking, then Routes.
+
+Route in Hamburger Menu
+
+If no routes have been created for a project, you will be presented with a Create Route button.
+
+Create Route
+
+On the Create Route screen, fill out the form, select your service in the service dropdown."
+"How can I learn more about Frontier and its capabilities?
+","OLCF Tutorials – Simple HIP Examples
+
+The links below point to event pages from previous Frontier training events. Under the ""Presentations"" tab on each event page, you will find the presentations given during the event.
+
+Frontier Application Readiness Kick-Off Workshop (October 2019)
+
+Please check back to this section regularly as we will continue to add new content for our users."
+"How do I specify the number of GPUs per node required for my job on Frontier?
+","Due to the unique architecture of Frontier compute nodes and the way that Slurm currently allocates GPUs and CPU cores to job steps, it is suggested that all 8 GPUs on a node are allocated to the job step to ensure that optimal bindings are possible.
+
+Before jumping into the examples, it is helpful to understand the output from the hello_jobstep program:"
+"How do I test if Qiskit is installed properly?
+","Qiskit is open-source software for working with quantum computers at the level of circuits, pulses, and algorithms.
+
+Installing Qiskit provides access to the IBM backends. Due to the simple nature of installing Qiskit, most of this info was taken directly from their documentation. See these links for more details:
+
+https://qiskit.org/documentation/getting_started.html
+
+https://qiskit.org/documentation/intro_tutorial1.html
+
+https://qiskit.org/ecosystem/ibm-provider/tutorials/Migration_Guide_from_qiskit-ibmq-provider.html
+
+https://quantum-computing.ibm.com/lab/docs/iql/manage/account/ibmq"
+"How do I set the number of threads per MPI task in Summit?
+","In this example, the intent is to launch 2 MPI ranks, each of which spawn 2 OpenMP threads, and have all of the 4 OpenMP threads run on different physical CPU cores.
+
+First (INCORRECT) attempt
+
+To set the number of OpenMP threads spawned per MPI rank, the OMP_NUM_THREADS environment variable can be used. To set the number of MPI ranks launched, the srun flag -n can be used.
+
+$ export OMP_NUM_THREADS=2
+$ srun -N1 -n2 ./hello_mpi_omp | sort"
+"How do I apply to be a mentor?
+","If you would like more information about how you can volunteer to mentor a team at an upcoming Open/GPU hackathon, please visit our Become a Mentor page.
+
+<p style=""font-size:20px""><b>Who can I contact with questions?</b></p>
+
+If you have any questions about the OLCF GPU Hackathon Series, please contact OLCF Help at (help@olcf.ornl.gov)."
+"What is the difference between hipExtMallocWithFlags() and hipMallocManaged()?
+","| API | Flag | Results | | --- | --- | --- | | hipHostMalloc() | hipHostMallocDefault | Fine grained | | hipHostMalloc() | hipHostMallocNonCoherent | Coarse grained |
+
+The following table shows the nature of the memory returned based on the flag passed as argument to hipExtMallocWithFlags().
+
+| API | Flag | Result | | --- | --- | --- | | hipExtMallocWithFlags() | hipDeviceMallocDefault | Coarse grained | | hipExtMallocWithFlags() | hipDeviceMallocFinegrained | Fine grained |"
+"How can I compile a Fortran program using the Portland Group Fortran Compiler on the Andes cluster?
+","The OLCF provides hundreds of pre-installed software packages and scientific libraries for your use, in addition to taking software installation requests. See the software page for complete details on existing installs.
+
+Compiling code on andes is typical of commodity or Beowulf-style HPC Linux clusters.
+
+The following compilers are available on Andes:
+
+intel, intel composer xe (default)
+
+pgi, the portland group compilar suite
+
+gcc, the gnu compiler collection"
+"What is the recommended optimization flag for attribution to source lines when using HPCToolkit on Summit?
+","HPCToolkit is an integrated suite of tools for measurement and analysis of program performance on computers ranging from multicore desktop systems to the nation’s largest supercomputers. HPCToolkit provides accurate measurements of a program’s work, resource consumption, and inefficiency, correlates these metrics with the program’s source code, works with multilingual, fully optimized binaries, has very low measurement overhead, and scales to large parallel systems. HPCToolkit’s measurements provide support for analyzing a program execution cost, inefficiency, and scaling characteristics both"
+"What is the hostname for the SPI resource that I need to enter in Putty?
+","Login to https://kdivdi.ornl.gov with your KDI issued credentials
+
+Launch the Putty Application
+
+Enter the hostname ""citadel.ccs.ornl.gov"" and click Open
+
+You will then be in an ssh terminal to authenticate with your OLCF credentials as detailed above.
+
+Projects using ORNL's KDI must following KDI access procedures and cannot access SPI resources directly.  If your project uses both KDI and SPI, you will not access the SPI resources directly."
+"What is the exit code of the SBCAST command if it fails?
+","sbcast --send-libs -pf ${exe} /mnt/bb/$USER/${exe}
+if [ ! ""$?"" == ""0"" ]; then
+    # CHECK EXIT CODE. When SBCAST fails, it may leave partial files on the compute nodes, and if you continue to launch srun,
+    # your application may pick up partially complete shared library files, which would give you confusing errors.
+    echo ""SBCAST failed!""
+    exit 1
+fi"
+"How do I select a job layout for my application on Frontier?
+","To override this default layout (not recommended), set -S 0 at job allocation.
+
+
+
+Frontier uses SchedMD's Slurm Workload Manager for scheduling and managing jobs. Slurm maintains similar functionality to other schedulers such as IBM's LSF, but provides unique control of Frontier's resources through custom commands and options specific to Slurm. A few important commands can be found in the conversion table below, but please visit SchedMD's Rosetta Stone of Workload Managers for a more complete conversion reference."
+"How do I connect to the VampirServer using the Vampir GUI?
+","Launch the Vampir GUI on your local machine
+
+Similar to how we have connected Vampir to the VampirServer in the https://docs.olcf.ornl.gov/systems/Vampir.html#previous section, <vampauth> you will follow the same steps except you will use localhost for the server name and your local machine port number you selected. Press 'Connect' and this should open the authentication window where you will enter your UserID and the https://docs.olcf.ornl.gov/systems/Vampir.html#VampirServer password <vampserpw> printed after a successful connection."
+"How do I launch the QVM server?
+","With the way pyQuil works, you need to launch its compiler server, launch the virtual machine / simulator QVM server, and then launch your pyQuil Python program on the same host. Running a Python script will ping and utilize both the compiler and QVM servers. As a proof of concept, this has been done on a single login node and the steps are outlined below.
+
+Using your already created ENV_NAME virtual environment (outlined above):
+
+(ENV_NAME)$ quilc -P -S > quilc.log 2>&1 & qvm -S > qvm.log 2>&1 & python3 script.py ; kill $(jobs -p)"
+"Can I use any ssh client to access the OLCF systems?
+","DTN access is automatically granted to all enabled OLCF users. For interactive access to DTNs (ssh/scp/sftp), connect to dtn.ccs.ornl.gov (for the moderate enclave) or opendtn.ccs.ornl.gov (for the open enclave). For example:
+
+ssh username@dtn.ccs.ornl.gov
+
+For more information on connecting to OLCF resources, see https://docs.olcf.ornl.gov/systems/dtn_user_guide.html#connecting-to-olcf."
+"What is the difference in resource allocation between capitalized and lowercase -l flag values for Summit?
+",For Summit:
+"What is the purpose of the ""jsrun"" command?
+","If JSM or PMIX errors occur as the result of backgrounding many job steps, using the --immediate option to jsrun may help, as shown in the following example.
+
+#!/bin/bash
+#BSUB -P ABC123
+#BSUB -W 3:00
+#BSUB -nnodes 1
+#BSUB -J RunSim123
+#BSUB -o RunSim123.%J
+#BSUB -e RunSim123.%J
+
+cd $MEMBERWORK/abc123
+jsrun <options> --immediate ./a.out
+jsrun <options> --immediate ./a.out
+jsrun <options> --immediate ./a.out
+
+By default, jsrun --immediate does not produce stdout or stderr. To capture stdout and/or stderr when using this option, additionally include --stdio_stdout/-o and/or --stdio_stderr/-k."
+"How do I get started with HPCToolkit on Frontier?
+","HPCToolkit is an integrated suite of tools for measurement and analysis of program performance on computers ranging from multicore desktop systems to the nation’s largest supercomputers. HPCToolkit provides accurate measurements of a program’s work, resource consumption, and inefficiency, correlates these metrics with the program’s source code, works with multilingual, fully optimized binaries, has very low measurement overhead, and scales to large parallel systems. HPCToolkit’s measurements provide support for analyzing a program execution cost, inefficiency, and scaling characteristics both"
+"Can I use Globus to transfer data between other systems and Frontier?
+",The following example is intended to help users who are making the transition from Summit to Frontier to move their data between Alpine GPFS and Orion Lustre. We strongly recommend using Globus for this transfer as it is the method that is most efficient for users and that causes the least contention on filesystems and data transfer nodes.
+"Where can I find more information about center-wide file systems and data archiving on Summit?
+","Summit is connected to an IBM Spectrum Scale™ filesystem providing 250PB of storage capacity with a peak write speed of 2.5 TB/s. Summit also has access to the center-wide NFS-based filesystem (which provides user and project home areas) and has access to the center’s High Performance Storage System (HPSS) for user and project archival storage.
+
+Summit is running Red Hat Enterprise Linux (RHEL) version 8.2."
+"Who should I contact to request a purge exemption?
+","on purge timeframes for each storage area, if applicable."
+"How can I load the necessary modules for my h5py job on Andes?
+","First, load the gnu compiler module (most Python packages assume GCC), hdf5 module (necessary for h5py), and the python module (allows you to create a new environment):
+
+Summit
+
+.. code-block:: bash
+
+   $ module load gcc
+   $ module load hdf5
+   $ module load python
+
+Andes
+
+.. code-block:: bash
+
+   $ module load gcc
+   $ module load hdf5
+   $ module load python
+
+Frontier
+
+.. code-block:: bash
+
+   $ module load PrgEnv-gnu
+   $ module load hdf5
+
+   # Make sure your personal miniconda installation is in your path
+   $ export PATH=""/path/to/your/miniconda/bin:$PATH"""
+"What is the name of the queue that is being used in the code?
+","In a simple batch queue system, jobs run in a first-in, first-out (FIFO) order. This often does not make effective use of the system. A large job may be next in line to run. If the system is using a strict FIFO queue, many processors sit idle while the large job waits to run. Backfilling would allow smaller, shorter jobs to use those otherwise idle resources, and with the proper algorithm, the start time of the large job would not be delayed. While this does make more effective use of the system, it indirectly encourages the submission of smaller jobs."
+"What is the version of the libtinfo.so.6 library in Crusher?
+","librocfft.so.0 => /opt/rocm-5.3.0/lib/librocfft.so.0 (0x00007fffdca1a000)
+    libz.so.1 => /lib64/libz.so.1 (0x00007fffdc803000)
+    libtinfo.so.6 => /lib64/libtinfo.so.6 (0x00007fffdc5d5000)
+    libcxi.so.1 => /usr/lib64/libcxi.so.1 (0x00007fffdc3b0000)
+    libcurl.so.4 => /usr/lib64/libcurl.so.4 (0x00007fffdc311000)
+    libjson-c.so.3 => /usr/lib64/libjson-c.so.3 (0x00007fffdc101000)
+    libpals.so.0 => /opt/cray/pe/lib64/libpals.so.0 (0x00007fffdbefc000)
+    libgfortran.so.5 => /opt/cray/pe/gcc-libs/libgfortran.so.5 (0x00007fffdba50000)"
+"What is the advantage of using round-robin GPU sharing in my MPI application?
+","Example 5: 16 MPI ranks - where 2 ranks share a GPU (round-robin, single-node)
+
+This example launches 16 MPI ranks (-n16), each with 1 physical CPU core (-c1) to launch 1 OpenMP thread (OMP_NUM_THREADS=1) on. The MPI ranks will be assigned to GPUs in a round-robin fashion so that each of the 8 GPUs on the node are shared by 2 MPI ranks. To accomplish this GPU mapping, a new srun options will be used:
+
+--ntasks-per-gpu specifies the number of MPI ranks that will share access to a GPU.
+
+$ export OMP_NUM_THREADS=1
+$ srun -N1 -n16 -c1 --ntasks-per-gpu=2 --gpu-bind=closest ./hello_jobstep | sort"
+"How do I log an artifact in MLFlow?
+","First, create a directory mlflow-example to contain two files. The first will be named MLproject:
+
+name: demo
+
+entry_points:
+  main:
+    command: ""python3 demo.py""
+
+The second will be named demo.py:
+
+import mlflow
+
+print(""MLflow Version:"", mlflow.version.VERSION)
+print(""Tracking URI:"", mlflow.tracking.get_tracking_uri())
+
+with mlflow.start_run() as run:
+    print(""Run ID:"", run.info.run_id)
+    print(""Artifact URI:"", mlflow.get_artifact_uri())
+    with open(""hello.txt"", ""w"") as f:
+        f.write(""Hello world!"")
+        mlflow.log_artifact(""hello.txt"")"
+"What is the purpose of the libmpi_cray.so.12 library?
+","libmodules.so.1 => /opt/cray/pe/lib64/cce/libmodules.so.1 (0x00007fffed9b5000)
+    libfi.so.1 => /opt/cray/pe/lib64/cce/libfi.so.1 (0x00007fffdf3b4000)
+    libcraymath.so.1 => /opt/cray/pe/lib64/cce/libcraymath.so.1 (0x00007fffed8ce000)
+    libf.so.1 => /opt/cray/pe/lib64/cce/libf.so.1 (0x00007fffed83b000)
+    libu.so.1 => /opt/cray/pe/lib64/cce/libu.so.1 (0x00007fffdf2ab000)
+    libcsup.so.1 => /opt/cray/pe/lib64/cce/libcsup.so.1 (0x00007fffed832000)
+    libamdhip64.so.5 => /opt/rocm-5.3.0/lib/libamdhip64.so.5 (0x00007fffdda8a000)"
+"Is encryption necessary for transferring sensitive and/or controlled information to and from the OLCF?
+","3. Prior to your project being initialized, we must have source IP addresses for devices in your organization that are authorized to transfer sensitive/controlled information to/from your organization, or for use in accessing that information. Encryption is necessary for transferring sensitive and/or controlled information to and from the OLCF."
+"Can I use Score-P with other programming paradigms besides Fortran and CUDA?
+","To instrument your code, you need to compile the code using the Score-P instrumentation command (scorep), which is added as a prefix to your compile statement. In most cases the Score-P instrumentor is able to automatically detect the programming paradigm from the set of compile and link options given to the compiler. Some cases will, however, require some additional link options within the compile statement e.g. CUDA instrumentation.
+
+Below are some basic examples of the different instrumentation scenarios:"
+"Where are Member Archive directories located?
+","As with the three project work areas, the difference between these three areas lies in the accessibility of data to project members and to researchers outside of the project. Member Archive directories are accessible only by an individual project member by default, Project Archive directories are accessible by all project members, and World Archive directories are readable by any user on the system.
+
+<string>:194: (INFO/1) Duplicate implicit target name: ""permissions""."
+"Is it secure to use oc port-forward to access my MongoDB instance?
+","For instance, if you have a mongoDB instance running on port 27017 with a deployment named mongodb, you could run oc port-forward deployment/mongodb 7777:27017. Now you can simply run mongo --port 7777 (assuming you have the mongo client installed on your local machine) and have access to your mongodb instance in the cluster, as if it were running on your local machine."
+"What is the relationship between precision and cost in Cupy?
+","The exact numbers may be slightly different, but you should see a speedup factor of approximately 2 or better when comparing ""GPU time"" to ""CPU time"". Switching to float32 was easier on memory for the GPU, which improved the time further. Things are even better when you look at ""GPU float32 restructured time"", which represents an additional factor of 4 speedup when compared to ""GPU float32 time"". Overall, using CuPy and restructuring the data led to a speedup factor of >20 when compared to traditional NumPy! This factor would diminish with smaller datasets, but represents what CuPy is capable"
+"What is the difference between a Persistent Volume (PV) and a Persistent Volume Claim (PVC)?
+","Once the Persistent Volume is created its allocated memory is available to be claimed by a project. This is done through a Persistent Volume Claim. PVC's are created using a YAML file in the same manner that PV's are created. An example of a PVC that claims the PV created in the previous section follows:
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: storage-1
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+The claim is then placed using:
+
+oc create -f storage-1.yaml"
+"How do I submit the job to the queue?
+","We need to save this to a file, say job.bs. We submit the job to the queue via bsub job.bs. Once we do, we have to wait for the job to start, then to run. After however long that takes, I get the output file rhw.679095. If I cat that file, I see:
+
+[1] ""Hello from rank 0 (local rank 0) of 4""
+[1] ""Hello from rank 1 (local rank 1) of 4""
+[1] ""Hello from rank 2 (local rank 0) of 4""
+[1] ""Hello from rank 3 (local rank 1) of 4""
+
+------------------------------------------------------------
+(additional output excluded for brevity's sake)"
+"What is the version of the libpsl library in the Crusher environment?
+","liblzma.so.5 => /sw/crusher/spack-envs/base/opt/linux-sles15-x86_64/gcc-7.5.0/xz-5.2.5-zwra4gpckelt5umczowf3jtmeiz3yd7u/lib/liblzma.so.5 (0x00007fffdb82a000)
+    libiconv.so.2 => /sw/crusher/spack-envs/base/opt/linux-sles15-x86_64/gcc-7.5.0/libiconv-1.16-coz5dzhtoeq5unhjirayfn2xftnxk43l/lib/libiconv.so.2 (0x00007fffdb52e000)
+    librocfft-device-0.so.0 => /opt/rocm-5.3.0/lib/librocfft-device-0.so.0 (0x00007fffa11a0000)
+    librocfft-device-1.so.0 => /opt/rocm-5.3.0/lib/librocfft-device-1.so.0 (0x00007fff6491b000)"
+"Is it allowed to have multiple jobs per user in the ""debug"" queue?
+","-  The scheduler will stop scheduling jobs in the ``killable`` queue (1)
+
+hour before a scheduled outage.
+
+-  Maximum-job-per-user limits are the same (i.e., in conjunction with)
+
+the ``batch`` queue.
+
+-  Any killed jobs will be automatically re-queued after a system outage
+
+completes.
+
+
+
+``debug`` Queue Policy
+
+----------------------
+
+
+
+The ``debug`` queue is intended to provide faster turnaround times for
+
+the code development, testing, and debugging cycle. For example,
+
+interactive parallel work is an ideal use for the debug queue. It
+
+enforces the following policies:"
+"What is the advantage of using the `fat binary` compilation method for Crusher?
+","Two versions of each kernel will be generated, one that runs with XNACK disabled and one that runs if XNACK is enabled. This is different from ""xnack any"" in that two versions of each kernel are compiled and HIP picks the appropriate one at runtime, rather than there being a single version compatible with both. A ""fat binary"" compiled in this way will have the same performance of ""xnack+"" with HSA_XNACK=1 and as ""xnack-"" with HSA_XNACK=0, but the final executable will be larger since it contains two copies of every kernel."
+"How can I create an HTAR archive of a directory with a large number of files?
+","There are limits to the size and number of files that can be placed in an HTAR archive.
+
+| Individual File Size Maximum | 68GB, due to POSIX limit | | --- | --- | | Maximum Number of Files per Archive | 1 million |
+
+For example, when attempting to HTAR a directory with one member file larger that 64GB, the following error message will appear:
+
+$ htar -cvf  /hpss/prod/[projid]/users/[userid]/hpss_test.tar hpss_test/"
+"Can I use the ""weight"" parameter in a Slate route to route requests to multiple services in a round-robin fashion?
+","Route Exposed
+
+While a route usually points to one service through the to parameter in the configuration, it is possible to have as many as four services to load balance between. This is used with A/B deployments.
+
+Here is an example route which points to 3 services:"
+"What is the purpose of the user data retention policy at OLCF?
+","The user data retention policy exists to reclaim storage space after a user account is deactivated, e.g., after the user’s involvement on all OLCF projects concludes. By default, the OLCF will retain data in user-centric storage areas only for a designated amount of time after the user’s account is deactivated. During this time, a user can request a temporary user account extension for data access. See the section https://docs.olcf.ornl.gov/systems/olcf_policy_guide.html#retention-policy for details on retention timeframes for each user-centric storage area."
+"Can I use the bstop and bresume commands on a job that is not my own?
+","LSF supports user-level suspension and resumption of jobs. Jobs are suspended with the bstop command and resumed with the bresume command. The simplest way to invoke these commands is to list the job id to be suspended/resumed:
+
+bstop 12345
+bresume 12345
+
+Instead of specifying a job id, you can specify other criteria that will allow you to suspend some/all jobs that meet other criteria such as a job name, a queue name, etc. These are described in the manpages for bstop and bresume."
+"Can I use the -craype-verbose flag with any compiler on Crusher?
+","Use the -craype-verbose flag to display the full include and link information used by the Cray compiler wrappers. This must be called on a file to see the full output (e.g., CC -craype-verbose test.cpp).
+
+The MPI implementation available on Crusher is Cray's MPICH, which is ""GPU-aware"" so GPU buffers can be passed directly to MPI calls.
+
+
+
+This section covers how to compile for different programming models using the different compilers covered in the previous section.
+
+<string>:230: (INFO/1) Duplicate implicit target name: ""mpi""."
