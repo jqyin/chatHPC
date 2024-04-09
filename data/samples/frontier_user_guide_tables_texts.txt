@@ -1,0 +1,473 @@
+Table 1:
+The table provides a breakdown of the different types of nodes found on the Frontier supercomputer. The first row serves as the header and does not require description. The first column, "Node Type", lists the types of nodes found on the supercomputer, while the second column, "Description", gives a detailed overview of each type. The first type mentioned is the login node, which is where users are placed when they connect to Frontier. This node allows users to write, edit, and compile code, manage data, and submit jobs. However, it is not meant for launching parallel or threaded jobs as it is a shared resource used by multiple users at the same time. The second type of node is the compute node, which makes up the majority of nodes on Frontier. These nodes are where parallel jobs are executed and can be accessed using the srun command. 
+
+|Node Type|Description|
+|-|-|
+|Login|When you connect to Frontier, you're placed on a login node. This is the place to write/edit/compile your code, manage data, submit jobs, etc. You should never launch parallel jobs from a login node nor should you run threaded jobs on a login node. Login nodes are shared resources that are in use by many users simultaneously.|
+|Compute|Most of the nodes on Frontier are compute nodes. These are where your parallel job executes. They're accessed via the srun command.|
+
+Table 2:
+The following table provides a detailed overview of the settings for the Frontier supercomputer. The table is divided into two rows with the first row serving as the header. The table contains information about the path, type, permissions, quota, backups, purged, retention, and whether it is on the compute nodes for both the User Home and Project Home areas. The User Home area, which is located at /ccs/home/[userid], is an NFS type with user-set permissions and a quota of 50 GB. Backups are enabled and it is not purged. The retention period for this area is 90 days and it is located on the compute nodes. The Project Home area, which is located at /ccs/proj/[projid], is also an NFS type but with a default of 770 permissions and a quota of 50 GB. Backups are enabled and it is not purged. The retention period for this area is also 90 days and it is located on the compute nodes. Overall, this table provides important details about the file storage settings for the Frontier supercomputer, allowing users to easily understand and manage their storage options.
+
+| Area        | Path                 | Type | Permissions | Quota | Backups | Purged | Retention | On Compute Nodes |
+|-------------|----------------------|------|-------------|-------|---------|--------|-----------|------------------|
+| User Home   | /ccs/home/[userid]   | NFS  | User set    | 50 GB | Yes     | No     | 90 days   | Yes              |
+| Project Home| /ccs/proj/[projid]   | NFS  | 770         | 50 GB | Yes     | No     | 90 days   | Yes              |
+
+Table 3:
+The Frontier supercomputer table provides an extensive overview of various work areas and their corresponding paths, types, permissions, quotas, backup options, purged duration, retention settings, and accessibility on compute nodes. These work areas include Member Work, Project Work, and World Work. The paths for these areas include subdirectories such as user ID, project ID, and a designated shared folder. The type of storage used for these work areas is Lustre HPE ClusterStor, which has a capacity of 50 TB per quota. Backup options are not available, and the purged duration is set to 90 days for all work areas. The retention setting is not applicable (N/A) for all work areas. These work areas are accessible on the compute nodes of the Frontier supercomputer. 
+
+| Area         | Path                                                   | Type              | Permissions | Quota | Backups | Purged   | Retention | On Compute Nodes |
+|--------------|--------------------------------------------------------|-------------------|-------------|-------|---------|----------|-----------|------------------|
+| Member Work  | /lustre/orion/[projid]/scratch/[userid]               | Lustre HPE ClusterStor | 700       | 50 TB | No      | 90 days  | N/A       | Yes              |
+| Project Work | /lustre/orion/[[projid]/proj-shared                   | Lustre HPE ClusterStor | 770       | 50 TB | No      | 90 days  | N/A       | Yes              |
+| World Work   | /lustre/orion/[[projid]/world-shared                  | Lustre HPE ClusterStor | 775       | 50 TB | No      | 90 days  | N/A       | Yes              |
+
+Table 4:
+The table presents detailed information about the Frontier supercomputer's archives. It includes the areas for Member, Project, and World archives, as well as the respective paths, types, permissions, quotas, backups, purged status, retention period, and whether they are available on compute nodes. The Member Archive has a path of "/hpss/prod/[projid]/users/$USER" and HPSS type with permissions set to 700. Its quota is 100 TB and backups are not enabled. The Purged column shows a "No" indicating no automatic purging takes place. The retention period for this archive is 90 days and it is not available on compute nodes. The Project Archive has a path of "/hpss/prod/[projid]/proj-shared" and HPSS type with permissions set to 770. Its quota, backups, purge status, retention period, and availability on compute nodes follow the same pattern as the Member Archive. The World Archive has a path of "/hpss/prod/[projid]/world-shared" and HPSS type with permissions set to 775. Its quota, backups, purge status, retention period, and availability on compute nodes also follow the same pattern as the other archives. Overall, the table provides a comprehensive overview of the Frontier supercomputer's archive organization and management. 
+ 
+
+
+The following table provides a detailed breakdown of the archives on the Frontier supercomputer. It outlines the Member, Project, and World archives, along with information on their respective paths, types, permissions, quotas, backups, purged status, retention period, and availability on compute nodes. The Member Archive has a path of "/hpss/prod/[projid]/users/$USER" and is of HPSS type with permissions set to 700. Its quota is 100 TB and backups are not enabled. The Purged column shows a "No" indicating no automatic purging takes place. The retention period for this archive is 90 days and it is not available on compute nodes. The Project Archive has a path of "/hpss/prod/[projid]/proj-shared" and is also of HPSS type with permissions set to 770. Its quota, backups, purge status, retention period, and availability on compute nodes follow the same pattern as the Member Archive. The World Archive has a path of "/hpss/prod/[projid]/world-shared" and is of HPSS type with permissions set to 775. Its quota, backups, purge status, retention period, and availability on compute nodes also follow the same pattern as the other archives. This table provides a comprehensive overview of the Frontier supercomputer's archive organization and management, presenting all relevant information in an organized manner for accurate understanding and utilization of the archives. 
+
+| Area           | Path                             | Type  | Permissions | Quota   | Backups | Purged | Retention | On Compute Nodes |
+|----------------|----------------------------------|-------|-------------|---------|---------|--------|-----------|------------------|
+| Member Archive | /hpss/prod/[projid]/users/$USER | HPSS  | 700         | 100 TB  | No      | No     | 90 days   | No               |
+| Project Archive| /hpss/prod/[projid]/proj-shared | HPSS  | 770         | 100 TB  | No      | No     | 90 days   | No               |
+| World Archive  | /hpss/prod/[projid]/world-shared | HPSS  | 775         | 100 TB  | No      | No     | 90 days   | No               |
+
+Table 5:
+The table displays a comparison between two leading manufacturers in the computing industry, AMD and NVIDIA. The first column represents the terminology used by AMD for their supercomputers, while the second column represents the terminology used by NVIDIA. The first row serves as a header, specifying the type of terminology being discussed in each column. In the first row, "Work-items or Threads" refers to the unit of execution used by AMD, which is equivalent to "Threads" in NVIDIA. The second row, "Workgroup" for AMD and "Block" for NVIDIA, refers to a group of work-items or threads that are executed together. These terms are interchangeable between the two manufacturers. The third row, "Wavefront" for AMD and "Warp" for NVIDIA, represents a group of threads that operate in a synchronous manner. Finally, the fourth row, "Grid" for AMD and "Grid" for NVIDIA, refers to the organization of work-items or threads into a two or three-dimensional structure. Overall, this table provides a comprehensive description of key elements used in supercomputers and highlights the similarities and differences between the terminology used by AMD and NVIDIA.
+
+| AMD | NVIDIA |
+|-----|---------|
+| Work-items or Threads | Threads |
+| Workgroup | Block |
+| Wavefront | Warp |
+| Grid | Grid |
+
+Table 6:
+The following table provides a comprehensive list of commands for using the Frontier supercomputer. The first row serves as the header, with the column on the left displaying various commands and the column on the right providing a brief description of each command. These include commands such as "module -t list" which shows a list of currently loaded modules, "module avail" which displays a table of available modules, "module help <modulename>" which provides help information for a specific module, and "module spider <string>" which can be used to search for all possible modules based on a given string. Other commands, like "module load" and "module use", are used to load and add modules to the current environment, while "module unuse" and "module reset" can remove and reset loaded modules. Lastly, there are also commands like "module purge" which unloads all modules and "module update" which reloads all currently loaded modules. Overall, this table serves as a useful reference for navigating the various features and capabilities of the Frontier supercomputer.
+
+| Command                | Description                                                               |
+|------------------------|---------------------------------------------------------------------------|
+| module -t list         | Shows a terse list of the currently loaded modules                         |
+| module avail           | Shows a table of the currently available modules                           |
+| module help <modulename>| Shows help information about <modulename>                                  |
+| module show <modulename>| Shows the environment changes made by the <modulename> modulefile         |
+| module spider <string> | Searches all possible modules according to <string>                       |
+| module load <modulename> [...] | Loads the given <modulename>(s) into the current environment      |
+| module use <path>      | Adds <path> to the modulefile search cache and MODULESPATH                |
+| module unuse <path>    | Removes <path> from the modulefile search cache and MODULESPATH           |
+| module purge           | Unloads all modules                                                       |
+| module reset           | Resets loaded modules to system defaults                                  |
+| module update          | Reloads all currently loaded modules                                      |
+
+Table 7:
+The table presents various commands for using the Frontier supercomputer's module system. The first command, "module spider," allows users to view the entire possible graph of available modules on the system. The second command, "module spider <modulename>," enables users to search for specific modules by name within the graph. The third command, "module spider <modulename>/<version>," allows users to search for a specific version of a module. Finally, the fourth command, "module spider <string>," enables users to search for modulefiles containing a specific string. These commands provide users with a comprehensive search functionality for finding and utilizing the various modules available on the Frontier supercomputer.
+
+| Command | Description |
+|---------|-------------|
+| module spider | Shows the entire possible graph of modules |
+| module spider <modulename> | Searches for modules named <modulename> in the graph of possible modules |
+| module spider <modulename>/<version> | Searches for a specific version of <modulename> in the graph of possible modules |
+| module spider <string> | Searches for modulefiles containing <string> |
+
+Table 8:
+The following table outlines the various compilers and programming environments available for use on the Frontier supercomputer. The first column lists the vendors, including Cray, AMD, and GCC. The second column specifies the programming environment, such as prgEnv-cray, prgEnv-amd, and prgEnv-gnu. Next, the compiler module is listed, including cce, amd, and gcc. The fourth column specifies the language, with options for C, C++, and Fortran. The fifth column lists the compiler wrapper, such as cc, craycc, and amdclang. Finally, the last column provides the actual compiler, including craycc or amdclang++, which are used for C and C++ languages, respectively, and crayftn or amdflang, which are used for Fortran. This table is a helpful reference for users of the Frontier supercomputer as it provides a comprehensive list of available compilers and their corresponding environments and modules. 
+
+|Vendor|Programming Environment|Compiler Module|Language|Compiler Wrapper|Compiler|
+|---|---|---|---|---|---|
+|Cray|PrgEnv-cray|cce|C|cc|craycc|
+|C++|CC|craycxx or crayCC||||
+|Fortran|ftn|crayftn||||
+|AMD|PrgEnv-amd|amd|C|cc|amdclang|
+|C++|CC|amdclang++||||
+|Fortran|ftn|amdflang||||
+|GCC|PrgEnv-gnu|gcc|C|cc|${GCC_PATH}/bin/gcc|
+|C++|CC|${GCC_PATH}/bin/g++||||
+|Fortran|ftn|${GCC_PATH}/bin/gfortran||||
+
+Table 9:
+The Frontier supercomputer is equipped with a variety of programming environments to cater to different needs. Its programming environment modules include PrgEnv-amd, PrgEnv-cray, and PrgEnv-gnu. Each of these modules provides access to the ROCm Toolchain, a programming toolchain specifically designed for AMD GPUs. To use the PrgEnv-amd module, simply load it using the command "module load PrgEnv-amd", and the ROCm Toolchain will automatically be loaded as well. If you prefer to use either PrgEnv-cray or PrgEnv-gnu, you can access the ROCm Toolchain by loading the amd-mixed module using the command "module load amd-mixed". With these programming environments and toolchains, users of the Frontier supercomputer have a wide range of options when it comes to developing and running their programs on the powerful AMD GPUs. 
+
+| Programming Environment Module | Module that gets you ROCm Toolchain | How you load it: |
+|---------------------------------|-------------------------------------|------------------|
+| PrgEnv-amd                      | amd                                 | module load PrgEnv-amd |
+| PrgEnv-cray or PrgEnv-gnu       | amd-mixed                           | module load amd-mixed |
+
+Table 10:
+The Frontier supercomputer table lists the various implementations, modules, compilers, and header files and linking used in the creation of the computer. The first row serves as a header and does not require a description. The second row includes the Cray MPICH implementation, its corresponding module - cray-mpich, and the compiler wrappers cc, CC, and ftn used with the Cray compiler. The third row describes the built-in MPI header files and linking found within the Cray compiler wrappers. The fourth row lists the hipcc implementation and includes additional linking options such as -L${MPICH_DIR}/lib and -lmpi. The fifth, sixth, and seventh rows also specify additional linking options and include variables such as ${CRAY_XPMEM_POST_LINK_OPTS}, ${PE_MPICH_GTL_DIR_amd_gfx90a}, and ${PE_MPICH_GTL_LIBS_amd_gfx90a}. Lastly, the eighth row includes an include option for the MPICH directory. 
+
+| Implementation | Module      | Compiler                                  | Header Files & Linking                                                                  |
+|----------------|-------------|-------------------------------------------|-----------------------------------------------------------------------------------------|
+| Cray MPICH     | cray-mpich  | cc, CC, ftn (Cray compiler wrappers)      | MPI header files and linking is built into the Cray compiler wrappers                   |
+| hipcc          |             | -L${MPICH_DIR}/lib -lmpi ${CRAY_XPMEM_PO  |                                                                                            |
+|                |             | ST_LINK_OPTS} -lxpmem ${PE_MPICH_GTL_DIR_  |                                                                                            |
+|                |             | amd_gfx90a} ${PE_MPICH_GTL_LIBS_amd_gfx90 |                                                                                            |
+|                |             | a} -I${MPICH_DIR}/include                 |
+
+Table 11:
+The table displays the compatibility of the Frontier supercomputer with the Cray-MPICH and ROCm software. The first row serves as a header, listing the two software versions. The subsequent rows show the compatibility of each version of the Frontier supercomputer with different versions of Cray-MPICH and ROCm. For Cray-MPICH, both versions 8.1.17 and 8.1.23 are compatible with different versions of ROCm, including 5.4.0, 5.3.0, 5.2.0, and 5.1.0. This provides users with different options for utilizing the supercomputer depending on their preferred software versions. The table showcases the flexibility and versatility of Frontier, making it a top choice for high-performance computing needs.
+
+Markdown Table:
+| cray-mpich | ROCm          |
+|------------|---------------|
+| 8.1.17     | 5.4.0, 5.3.0, 5.2.0, 5.1.0 |
+| 8.1.23     | 5.4.0, 5.3.0, 5.2.0, 5.1.0 |
+
+Table 12:
+The table displays the different vendors, modules, languages, and compilers used in the Frontier supercomputer. The first row serves as the header, outlining the different categories. The first column lists the vendors, including Cray, AMD, and GCC. The second column displays the specific module used by each vendor, such as cce for Cray and amd for AMD. The third column indicates the languages available for each vendor, including C, C++, and Fortran. The fourth column lists the compiler used for each language, such as cc for C and ftn for Fortran. The final column shows the OpenMP flag used for each vendor, with some aliases indicated. The Frontier supercomputer offers a variety of options for users to choose from for their programming needs, with each vendor providing a unique set of languages and compilers. \\
+
+| Vendor | Module | Language | Compiler | OpenMP flag (CPU thread) |
+|--------|--------|----------|----------|--------------------------|
+| Cray   | cce    | C, C++   | cc       | -fopenmp                 |
+|        |        |          | cc       | (wraps crayCC)           |
+| Fortran| ftn    | -homp    | -fopenmp | (alias)                  |
+| AMD    | amd    | C, C++   | cc       | -fopenmp                 |
+|        |        | Fortran  | ftn      | (alias)                  |
+| GCC    | gcc    | C, C++   | cc       | -fopenmp                 |
+|        |        | Fortran  | ftn      |                         |
+
+Table 13:
+The table provides information about the modules, languages, compilers, and OpenMP flags associated with the Frontier supercomputer. The modules listed include "cce" and "amd", which refer to programming environments offered by the vendors Cray and AMD, respectively. These modules support languages such as C, C++, and Fortran, as shown in the table. Compilers such as "cc" and "ftn" are used to compile code written in these languages. Additionally, the table provides information on the specific OpenMP flags for each module, with Cray's module using "-fopenmp" and AMD's module using "-fopenmp" and "-homp". The table also mentions additional compilers such as "cc (wraps crayCC)" and "hipcc (requires flags below)", which are used for specific purposes with certain languages. 
+
+| Vendor | Module | Language | Compiler | OpenMP flag (GPU) |
+| --- | --- | --- | --- | --- |
+| Cray | cce | C | cc (wraps craycc) | -fopenmp |
+| | | C++ | CC (wraps crayCC) | -fopenmp |
+| | | Fortran | ftn (wraps crayftn) | -homp |
+| AMD | amd | C | cc (wraps amdclang) | -fopenmp |
+| | | C++ | CC (wraps amdclang++) | -fopenmp |
+| | | Fortran | ftn (wraps amdflang) | -fopenmp (alias) |
+| | | C++ | hipcc (requires flags below) | -fopenmp |
+
+Table 14:
+The table provides a detailed overview of the specs and support for the Frontier supercomputer. The table presents information regarding the vendor, module, supported languages, compiler, flags, and level of support. The vendor for the supercomputer is Cray and it supports C and C++ languages using the cce compiler. The compiler also supports OpenACC 2.0 with full support for Fortran using ftn. However, partial support is provided for OpenACC 2.x/3.x and UMS. The module for the supercomputer is PrgEnv-cray with UMS version um025 and the compiler is clang. For C and C++ languages, the flags -h acc and -fopenacc are used respectively. The OpenACC support is currently experimental and for more information, one can contact Joel Denny at dennyje@ornl.gov. The last row in the table shows that there is no support for Fortran and it is indicated by an empty cell in the columns for module, language, and compiler.
+
+| Vendor | Module | Language | Compiler | Flags | Support |
+|:-------|:-------|:---------|:---------|:------|:--------|
+| Cray | cce | C, C++ | No support | | |
+| Fortran | ftn (wraps crayftn) | -h acc | Full support for OpenACC 2.0 |
+Partial support for OpenACC 2.x/3.x
+UMS
+module | PrgEnv-cray
+ums
+um025
+clacc | C, C++ | clang | -fopenacc | Experimental. Contact Joel Denny at dennyje@ornl.gov |
+Fortran | No support | | |
+
+Table 15:
+This table provides information about the compilers used for the Frontier supercomputer. The first column lists the different compilers available, including CC, Only with PrgEnv-cray, and PrgEnv-amd. The second column describes the compile and link flags, header files, and libraries for each compiler. For CC, the flags include standard C++11, with options for HIP and ROCclr and specifications for architecture and path. The LFLAGS also specify the ROCm path and use the AMD hip64 library. The third column lists the compiler "hipcc," which can directly compile HIP source files. The last row provides additional information on how to use the compiler, such as the command to see what is being invoked and how to explicitly target a specific architecture. 
+
+| Compiler | Compile/Link Flags, Header Files, and Libraries  |
+| -------- | ------------------------------------------------- |
+| CC | CFLAGS = -std=c++11 -D__HIP_ROCclr__ -D__HIP_ARCH_GFX90A__=1 --rocm-path=${ROCM_PATH} --offload-arch=gfx90a -x hip LFLAGS = --rocm-path=${ROCM_PATH} -L${ROCM_PATH}/lib -lamdhip64 |
+| Only with PrgEnv-cray | CFLAGS = -std=c++11 -D__HIP_ROCclr__ -D__HIP_ARCH_GFX90A__=1 --rocm-path=${ROCM_PATH} --offload-arch=gfx90a -x hip LFLAGS = --rocm-path=${ROCM_PATH} -L${ROCM_PATH}/lib -lamdhip64 |
+| PrgEnv-amd | CFLAGS = -std=c++11 -D__HIP_ROCclr__ -D__HIP_ARCH_GFX90A__=1 --rocm-path=${ROCM_PATH} --offload-arch=gfx90a -x hip LFLAGS = --rocm-path=${ROCM_PATH} -L${ROCM_PATH}/lib -lamdhip64 |
+| hipcc | Can be used directly to compile HIP source files. To see what is being invoked within this compiler driver, issue the command, hipcc --verbose. To explicitly target AMD MI250X, use --amdgpu-target=gfx90a |
+
+Table 16:
+The Frontier supercomputer is a high-performance computing system that is designed and built by AMD and Cray. It features a custom compiler, known as CC, which is used to compile and link code targeting the system's specific architecture. The compile and link flags include standard options for C++11, as well as specific options for the HIP programming language and the gfx90a architecture. The compiler also utilizes the Hipcc tool, which can directly compile HIP source files and includes the option to enable OpenMP threading. Additionally, the GNU compiler (CC) can also be used, but it must separate HIP kernels from CPU code and use the CC wrapper during linking. It is important to note that when using cmake, code must be compiled with amdclang++ instead of hipcc in order to properly target the Frontier supercomputer.
+
+| Vendor  | Compiler | Compile/Link Flags,  Header Files, and Libraries |
+| ------- | -------- | ----------------------------------------- |
+| AMD/Cray | CC       | CFLAGS = -std=c++11 -D__HIP_ROCclr__ -D__HIP_ARCH_GFX90A__=1 --rocm-path=${ROCM_PATH} --offload-arch=gfx90a -x hip -fopenmp<br>LFLAGS = --rocm-path=${ROCM_PATH} -fopenmp<br>-L${ROCM_PATH}/lib -lamdhip64 |
+| hipcc   |          | Can be used to directly compile HIP source files, add -fopenmp flag to enable OpenMP threading<br>To explicitly target AMD MI250X, use --amdgpu-target=gfx90a |
+| GNU     | CC       | The GNU compilers cannot be used to compile HIP code, so all HIP kernels must be separated from CPU code.<br>During compilation, all non-HIP files must be compiled with CC while HIP kernels must be compiled with hipcc.<br>Then linking must be performed with the CC wrapper.<br>NOTE: When using cmake, HIP code must currently be compiled using amdclang++ instead of hipcc. |
+
+Table 17:
+The Frontier supercomputer offers several commands for efficient job management. The first command, `squeue`, can be used to view the current queue and its associated jobs, similar to `bjobs` in the LSF system. `sbatch` allows users to submit batch scripts for execution, which is equivalent to `bsub` in LSF. `salloc` is used for interactive job submission, with a command line argument of `bsub -Is $SHELL` in LSF. `srun` is used to launch parallel jobs, which corresponds to `jsrun` in LSF. `sinfo` can be used to view information about nodes and partitions, which is similar to `bqueues` or `bhosts` in LSF. `sacct` allows users to view accounting information for jobs and job steps, similar to `bacct` in LSF. The `scancel` command can be used to cancel a job or job step, corresponding to `bkill` in LSF. Lastly, `scontrol` can be used to view or modify job configurations, which has similarities to `bstop`, `bresume`, and `bmod` in LSF.
+
+| Command  | Action/Task | LSF Equivalent |
+|----------|-------------|----------------|
+| squeue   | Show the current queue | bjobs |
+| sbatch   | Submit a batch script | bsub |
+| salloc   | Submit an interactive job | bsub -Is $SHELL |
+| srun     | Launch a parallel job | jsrun |
+| sinfo    | Show node/partition info | bqueues or bhosts |
+| sacct    | View accounting information for jobs/job steps | bacct |
+| scancel  | Cancel a job or job step | bkill |
+| scontrol | View or modify job configuration | bstop, bresume, bmod |
+
+Table 18:
+The table provides a comprehensive overview of the commands and steps involved in running a job on the Frontier supercomputer. It starts with the shell interpreter line, which specifies the type of shell being used. The next row mentions the OLCF (Oak Ridge Leadership Computing Facility) project under which the user will be charged for the job. This is followed by the job name and the location where the standard output file will be saved. The format for the standard output file includes placeholders for the job name and ID. The walltime requested for the job is also specified in HH:MM:SS format. The next row mentions the partition or queue where the job will be executed. The number of compute nodes required for the job is also mentioned. This is followed by a blank line in the table. The next few rows outline the steps involved in running the job, starting with changing into the run directory and copying the input file into its place. The job is then executed, with the layout details mentioned. Finally, the output file is copied to a designated location. This table serves as a handy guide for users to understand the necessary steps and commands involved in submitting jobs to the Frontier supercomputer.
+
+| Line | Description |
+|------|-------------|
+| 1 | Shell interpreter line |
+| 2 | OLCF project to charge |
+| 3 | Job name |
+| 4 | Job standard output file (%x will be replaced with the job name and %j with the Job ID) |
+| 5 | Walltime requested (in HH:MM:SS format). See the table below for other formats. |
+| 6 | Partition (queue) to use |
+| 7 | Number of compute nodes requested |
+| 8 | Blank line |
+| 9 | Change into the run directory |
+| 10 | Copy the input file into place |
+| 11 | Run the job (add layout details) |
+| 12 | Copy the output file to an appropriate location.|
+
+Table 19:
+Descriptive paragraph: The table provides a comprehensive list of options that can be used when submitting a job to the Frontier supercomputer. These options include specifying the project to which the job should be charged, requesting a certain number of nodes and walltime for the job, specifying the number of active hardware threads per core, and setting job dependencies. There are also options for requesting burst buffer/NVMe on each node, specifying the job name, and directing the standard output and error to specific files. Users can also choose to receive email notifications for certain job actions and can reserve specific nodes for their job. Another option is to reserve a specific number of cores per node, which cannot be used by the application. The table also provides information on how to signal a job and its applications. Users can signal a job to write a checkpoint just before it is killed by the system. Overall, these options allow for more control and customization when utilizing the Frontier supercomputer for various computing needs.
+
+| Option                 | Example Usage                  | Description                                                                                                                                        |
+|------------------------|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| -A                     | #SBATCH -A ABC123              | Specifies the project to which the job should be charged                                                                                           |
+| -N                     | #SBATCH -N 1024                | Request 1024 nodes for the job                                                                                                                     |
+| -t                     | #SBATCH -t 4:00:00             | Request a walltime of 4 hours. Walltime requests can be specified as minutes, hours:minutes, hours:minuts:seconds, days-hours, days-hours:minutes, or days-hours:minutes:seconds                                    |
+| --threads-per-core     | #SBATCH --threads-per-core=2   | Number of active hardware threads per core. Can be 1 or 2 (1 is default). Must be used if using --threads-per-core=2 in your srun command                |
+| -d                     | #SBATCH -d afterok:12345       | Specify job dependency (in this example, this job cannot start until job 12345 exits with an exit code of 0. See the Job Dependency section for more information)                                                  |
+| -C                     | #SBATCH -C nvme                | Request the burst buffer/NVMe on each node be made available for your job. See the Burst Buffers section for more information on using them.       |
+| -J                     | #SBATCH -J MyJob123            | Specify the job name (this will show up in queue listings)                                                                                        |
+| -o                     | #SBATCH -o jobout.%j           | File where job STDOUT will be directed (%j will be replaced with the job ID). If no -e option is specified, job STDERR will be placed in this file, too. |
+| -e                     | #SBATCH -e joberr.%j           | File where job STDERR will be directed (%j will be replaced with the job ID). If no -o option is specified, job STDOUT will be placed in this file, too. |
+| --mail-type            | #SBATCH --mail-type=END        | Send email for certain job actions. Can be a comma-separated list. Actions include BEGIN, END, FAIL, REQUEUE, INVALID_DEPEND, STAGE_OUT, ALL, and more. |
+| --mail-user            | #SBATCH --mail-user=user@somewhere.com                                                                             | Email address to be used for notifications. |
+| --reservation          | #SBATCH --reservation=MyReservation.1                                                                             | Instructs Slurm to run a job on nodes that are part of the specified reservation. |
+| -S                     | #SBATCH -S 8                                                                                                         | Instructs Slurm to reserve a specific number of cores per node (default is 8). Reserved cores cannot be used by the application. |
+| --signal               | #SBATCH --signal=USR1@300                                                   | Send the given signal to a job the specified time (in seconds) seconds before the job reaches its walltime. The signal can be by name or by number (i.e. both 10 and USR1 would send SIGUSR1). |
+
+Table 20:
+The table provides information on the Frontier supercomputer, a high performance computing system that is used for complex and large-scale scientific calculations. It includes five variables and their descriptions related to job submission and management on the supercomputer. The first variable, $SLURM_SUBMIT_DIR, indicates the directory from which the batch job was submitted and how to return to it. The second variable, $SLURM_JOBID, is a unique identifier for each job and is often used for labeling output and error files. The third variable, $SLURM_JOB_NUM_NODES, specifies the number of nodes requested for the job. The fourth variable, $SLURM_JOB_NAME, is the name of the job chosen by the user. The final variable, $SLURM_NODELIST, provides a list of all the nodes assigned to the job. These variables are essential for understanding and managing jobs on the Frontier supercomputer and ensuring efficient and accurate processing of scientific data.
+
+| Variable | Description   | 
+|-----------|--------------|
+| $SLURM_SUBMIT_DIR | The directory from which the batch job was submitted. By default, a new job starts in your home directory. You can get back to the directory of job submission with cd $SLURM_SUBMIT_DIR. Note that this is not necessarily the same directory in which the batch script resides. | 
+| $SLURM_JOBID | The job’s full identifier. A common use for $SLURM_JOBID is to append the job’s ID to the standard output and error files. | 
+| $SLURM_JOB_NUM_NODES | The number of nodes requested. | 
+| $SLURM_JOB_NAME | The job name supplied by the user. | 
+| $SLURM_NODELIST | The list of nodes assigned to the job. |
+
+Table 21:
+The table provides information on the various states and corresponding codes for the Frontier supercomputer. Each state is listed along with its code, along with a brief description of what each state means. The first row of the table is the header with the titles of "Code", "State", and "Description". The first state listed is "Canceled" with the code "CA", which indicates that the job has been canceled, potentially by either the user or an administrator. The next state is "Completed" with the code "CD", which signifies that the job has successfully completed with an exit code of 0. "Completing" is listed with the code "CG", indicating that the job is currently in the process of completing, with some processes still running. The code "PD" is associated with the state "Pending" which means the job is waiting for resources to be allocated. Lastly, the state of "Running" is denoted by the code "R", indicating that the job is currently in progress. Overall, this table provides a comprehensive overview of the different states that a job can be in on the Frontier supercomputer.
+
+|Code|State|Description|
+|---|---|---|
+|CA|Canceled|The job was canceled (could've been by the user or an administrator)|
+|CD|Completed|The job completed successfully (exit code 0)|
+|CG|Completing|The job is in the process of completing (some processes may still be running)|
+|PD|Pending|The job is waiting for resources to be allocated|
+|R|Running|The job is currently running|
+
+Table 22:
+The following table provides a comprehensive overview of potential reasons and their corresponding meanings for various scenarios that may occur on the Frontier supercomputer. The table's header is not included in the description, as it is self-explanatory. The first column, "Reason," lists all possible reasons for a job being held or experiencing issues, while the second column, "Meaning," provides a detailed explanation for each reason. This table serves as a useful resource for understanding and troubleshooting any problems that may arise when using the Frontier supercomputer. Please see the table below for reference.
+
+| Reason              | Meaning                                                                                                                                                    |
+|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Dependency          | The job has dependencies that have not been met, preventing it from running.                                                                                |
+| JobHeldUser         | The job is being held at the request of the user, possibly due to a specific condition or preference.                                                      |
+| JobHeldAdmin        | The job is being held at the request of the system administrator, possibly due to a system-wide issue or maintenance.                                       |
+| Priority            | Other jobs with a higher priority are currently running, causing this job to be held until they complete.                                                   |
+| Reservation         | The job is waiting for its reserved resources to become available before it can run.                                                                       |
+| AssocMaxJobsLimit   | The job is being held because the user or project has reached the limit for running jobs. This limit can be set to prevent resource overloading.          |
+| ReqNodeNotAvail     | The job requested a specific node, but it is currently unavailable due to various reasons such as being in use, reserved, down, or draining.                |
+| JobLaunchFailure    | The job failed to launch, potentially due to system issues or an invalid program name.                                                                     |
+| NonZeroExitCode     | The job exited with an error code other than 0, indicating an issue or failure during execution. This could be due to program errors or incompatible inputs. |
+
+Table 23:
+The table presents data on the Frontier supercomputer, specifically regarding the minimum and maximum number of nodes, the maximum walltime in hours, and the aging boost in days. The first row serves as the header for the table. The data is divided into five bins, with each bin containing information on the respective categories. The first bin shows that the minimum number of nodes for the Frontier supercomputer is 5,645 and the maximum number is 9,408, with a maximum walltime of 12 hours and an aging boost period of 8 days. The second bin has a lower minimum number of nodes at 1,882 and a smaller maximum at 5,644, with the same maximum walltime and a shorter aging boost period of 4 days. The third bin has the lowest number of nodes, ranging from 184 to 1,881, with the same maximum walltime and no aging boost. The fourth bin has even fewer nodes, with a range of 92 to 183, and a shorter maximum walltime of 6 hours and no aging boost. Finally, the fifth and last bin only has a single node with a maximum walltime of 2 hours and no aging boost. This table provides a comprehensive overview of the capabilities and configurations of the Frontier supercomputer. 
+
+| Bin | Min Nodes | Max Nodes | Max Walltime (Hours) | Aging Boost (Days) |
+| --- | --- | --- | --- | --- |
+| 1 | 5,645 | 9,408 | 12.0 | 8 |
+| 2 | 1,882 | 5,644 | 12.0 | 4 |
+| 3 | 184 | 1,881 | 12.0 | 0 |
+| 4 | 92 | 183 | 6.0 | 0 |
+| 5 | 1 | 91 | 2.0 | 0 |
+
+Table 24:
+The following table outlines the allocation usage and priority levels for the Frontier supercomputer. The first row displays the headers for the columns, which are "% of Allocation Used" and "Priority Reduction." The first column lists different ranges for the percentage of allocation used, while the second column specifies the corresponding priority reduction in days. If the allocation usage is less than 100%, there will be no priority reduction. For allocation usage between 100% and 125%, there will be a reduction of 30 days in priority. If the allocation usage exceeds 125%, there will be a reduction of 365 days in priority. This table serves as a guide for understanding the priority levels for allocation usage on the Frontier supercomputer.
+
+| % of Allocation Used | Priority Reduction |
+| --------------------- | ------------------ |
+| < 100%                | none               |
+| >=100% but <=125%     | 30 days            |
+| > 125%                | 365 days           |
+
+Table 25:
+The Frontier supercomputer is equipped with various flag options to control and schedule jobs. These flags are used to indicate when a job can start based on the status of other jobs. The first flag, #SBATCH -d after:jobid[+time], allows the job to start after a specified job has started or is canceled. The optional argument of +time indicates the minimum number of minutes that must pass before the job can start. The next flag, #SBATCH -d afterany:jobid, allows the job to start after a specific job has ended, regardless of its exit state. Similarly, the #SBATCH -d afternotok:jobid flag enables job start after a specified job has terminated in a failed state, while the #SBATCH -d afterok:jobid flag only allows job start after a successful completion of the specified job. The final flag, #SBATCH -d singleton, enables job start after any previously-launched job with the same name and from the same user has completed, ensuring that jobs are serialized based on username+jobname pairs. Overall, these flags provide flexibility and control over job scheduling on the Frontier supercomputer.
+
+| Flag                         | Meaning (for the dependent job)                                                                                                                                                                                                                                                                                   |
+|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| #SBATCH -d after:jobid[+time]| The job can start after the specified jobs start or are canceled. The optional +time argument is a number of minutes. If specified, the job cannot start until that many minutes have passed since the listed jobs start/are canceled. If not specified, there is no delay.                                                                  |
+| #SBATCH -d afterany:jobid    | The job can start after the specified jobs have ended (regardless of exit state).                                                                                                                                                                                                                                |
+| #SBATCH -d afternotok:jobid  | The job can start after the specified jobs terminate in a failed (non-zero) state.                                                                                                                                                                                                                              |
+| #SBATCH -d afterok:jobid     | The job can start after the specified jobs complete successfully (i.e. zero exit code).                                                                                                                                                                                                                         |
+| #SBATCH -d singleton         | Job can begin after any previously-launched job with the same name and from the same user have completed. In other words, serialize the running jobs based on username+jobname pairs.                                                                                                                                                                               |
+
+Table 26:
+The table provides a detailed overview of the commands scontrol hold and scontrol release for the Frontier supercomputer. The first column lists the commands and the second column provides a brief description of their function. The scontrol hold command is used to place a specific job, designated by the job number 12345, on hold. This means that the job will not be executed until the hold is released. On the other hand, the scontrol release command is used to release a specific job, also designated by the job number 12345, and allows it to be executed by the system. This table serves as a helpful reference for users of the Frontier supercomputer, allowing them to easily manipulate their job status through these commands.
+
+| Command          | Description                                                                                        |
+| -----------------|----------------------------------------------------------------------------------------------------|
+| scontrol hold 12345 | Place job 12345 on hold                                                                             |
+| scontrol release 12345 | Release job 12345 (i.e. tell the system it's OK to run it)                                       |
+
+Table 27:
+The following table showcases the capabilities of the Frontier supercomputer. In the first row, we see the header "scontrol update" which indicates the use of the scontrol command to modify job settings. The first row also shows the command to change the number of nodes requested for job 12345 to 1000. This means that this job will utilize 1000 nodes on the Frontier supercomputer. In the second row, we see the command to change the maximum walltime for job 12345 to 4 hours. This indicates that this job has a time limit of 4 hours for execution on the Frontier supercomputer. Overall, the table highlights some of the customizable settings that can be applied to jobs on the Frontier supercomputer through the use of the scontrol command.
+
+| scontrol update NumNodes=1000 JobID=12345 | Change job 12345's node request to 1000 nodes |
+| scontrol update TimeLimit=4:00:00 JobID=12345 | Change job 12345's max walltime to 4 hours |
+
+Table 28:
+The following table presents information related to the Frontier supercomputer's job queue. The first row serves as the header and lists the different commands (squeue -l and squeue -l -u $USER) that can be used to view the job queue. The second row provides a description for each command, explaining that the first one shows all jobs in the queue while the second one specifically shows only the jobs for the current user (denoted by the $USER variable). The rest of the table contains the various parameters and options that can be used with each command to further customize the output. This includes options to view specific job states, partitions, and job details. The information presented in this table is useful for users of the Frontier supercomputer who need to view and manage their pending jobs. 
+
+| Command              | Description                                                                         |
+|----------------------|-------------------------------------------------------------------------------------|
+| squeue -l            | Show all jobs currently in the queue.                                                |
+| squeue -l -u $USER   | Show all of your jobs currently in the queue.                                        |
+| -t, --states=[STATE] | Show jobs with a particular state.                                                  |
+| -p, --partition      | Show jobs for specific partition.                                                   |
+| -d, --details        | Show detailed output including job and partition details.                           |
+
+Table in markdown format:
+
+| Command              | Description                                                                         |
+|----------------------|-------------------------------------------------------------------------------------|
+| squeue -l            | Show all jobs currently in the queue.                                                |
+| squeue -l -u $USER   | Show all of your jobs currently in the queue.                                        |
+| -t, --states=[STATE] | Show jobs with a particular state.                                                  |
+| -p, --partition      | Show jobs for specific partition.                                                   |
+| -d, --details        | Show detailed output including job and partition details.                           |
+
+Table 29:
+The table showcases different variations of the sacct command that can be used to view job allocations and information on the Frontier supercomputer. The first row provides an explanation of the various parameters used in the command. The second row shows the command to display all jobs in the queue while summarizing the entire allocation instead of showing individual steps. The third row displays the command to view all jobs for a specific user, while also showing the individual steps. The fourth row demonstrates how to view all steps for a specific job using its ID number. Lastly, the fifth row showcases a command to view all jobs for a particular user since a specific date and time, with a customized output format displaying the job ID, job name, and node list. This table serves as a helpful guide for users to efficiently manage their jobs on the Frontier supercomputer.
+
+| sacct -a -X | 
+| sacct -u $USER | 
+| sacct -j 12345 | 
+| sacct -u $USER -S 2022-07-01T13:00:00 -o "jobid%5,jobname%25,nodelist%20" -X |
+
+Table 30:
+The table provides important information about the Frontier supercomputer. The first row lists the different parameters and their options. The 'Number of nodes' column indicates the total number of nodes available on the supercomputer. The 'Total number of MPI tasks' column specifies the default number of tasks, which is 1. The 'Logical cores per MPI task' column indicates the number of cores allocated for each MPI task. When using '--threads-per-core=1', the '-c' option is equivalent to the physical cores per task. By default, additional cores per task are distributed within one L3 region before moving on to a different L3 region. The '--cpu-bind' option allows for tasks to be bound to specific CPUs, with the recommended 'threads' option automatically generating masks for task-thread binding. The '--threads-per-core' option specifies the maximum number of hardware threads per core, which is 1 by default but can be changed to 2. The '-m' option specifies the distribution of MPI ranks across compute nodes, sockets, and cores. The default distribution is 'block:cyclic:cyclic'. The table also mentions the 'ntasks-per-node' and 'ntasks-per-gpu' options for specifying the number of tasks per node or per GPU. The 'gpus' and 'gpus-per-node' options allow for specifying the total number of GPUs required for the job and the number of GPUs per node, respectively. The table also explains the different options available for binding tasks to GPUs. 
+```
+| N | Number of nodes |
+| n | Total number of MPI tasks (default is 1) |
+| c, --cpus-per-task=<ncpus> | Logical cores per MPI task (default is 1) |
+| --cpu-bind=threads | Bind tasks to CPUs. |
+| --threads-per-core=<threads> | In task layout, use the specified maximum number of hardware threads per core (default is 1; there are 2 hardware threads per physical CPU core). Must also be set in salloc or sbatch if using --threads-per-core=2 in your srun command.|
+| -m, --distribution=<value>:<value>:<value> | Specifies the distribution of MPI ranks across compute nodes, sockets, and cores, respectively. The default values are block:cyclic:cyclic, see man srun for more information. Currently, the distribution setting for cores (the third "<value>" entry) has no effect on Frontier. |
+| --ntasks-per-node=<ntasks> | If used without -n: requests that a specific number of tasks be invoked on each node. If used with -n: treated as a maximum count of tasks per node. |
+| --gpus | Specify the number of GPUs required for the job (total GPUs across all nodes). |
+| --gpus-per-node | Specify the number of GPUs per node required for the job. |
+| --gpu-bind=closest | Binds each task to the GPU which is on the same NUMA domain as the CPU core the MPI rank is running on. |
+| --gpu-bind=map_gpu:<list> | Bind tasks to specific GPUs by setting GPU masks on tasks (or ranks) as specified where <list> is <gpu_id_for_task_0>,<gpu_id_for_task_1>,.... If the number of tasks (or ranks) exceeds the number of elements in this list, elements in the list will be reused as needed starting from the beginning of the list. To simplify support for large task counts, the lists may follow a map with an asterisk and repetition count. (For example map_gpu:0*4,1*4) |
+| --ntasks-per-gpu=<ntasks> | Request that there are ntasks tasks invoked for every GPU.|
+
+Table 31:
+The presented table provides a comparison of the different options for job submission on the Frontier supercomputer. The two options, jsrun and srun, are compared in terms of the number of nodes and tasks that can be defined, as well as the number of CPUs, resource sets, and GPUs per task and resource set. Both options also allow for binding tasks to allocated CPUs, but srun also includes a performance binding preference. Additionally, the table highlights the ability to specify a task to resource mapping pattern with the option of launch distribution. This table serves as a helpful guide for users to determine which option best suits their job submission needs on the Frontier supercomputer.
+
+| Option                             | jsrun (Summit) | srun (Frontier) |
+|------------------------------------ |--------------- |---------------- |
+| Number of nodes                     | -nnodes        | -N, --nnodes    |
+| Number of tasks                     | defined with resource set | -n, --ntasks    |
+| Number of tasks per node            | defined with resource set | --ntasks-per-node |
+| Number of CPUs per task             | defined with resource set | -c, --cpus-per-task |
+| Number of resource sets             | -n, --nrs      | N/A             |
+| Number of resource sets per host    | -r, --rs_per_host | N/A           |
+| Number of tasks per resource set    | -a, --tasks_per_rs | N/A           |
+| Number of CPUs per resource set     | -c, --cpus_per_rs | N/A           |
+| Number of GPUs per resource set     | -g, --gpus_per_rs | N/A           |
+| Bind tasks to allocated CPUs        | -b, --bind     | --cpu-bind      |
+| Performance binding preference      | -l,--latency_priority | --hint     |
+| Specify task to resource mapping pattern | --launch_distribution | -m, --distribution |
+
+Table 32:
+The table presents information on the Frontier supercomputer, specifically related to MPI ranks and OpenMP threads running on different compute nodes and GPUs. The first row shows the headers for the various data points, including MPI rank ID, OpenMP thread ID, CPU hardware thread, compute node, GPU ID, runtime GPU ID, and physical Bus ID. The information in the table is useful for understanding the distribution of work on the Frontier supercomputer, as well as the performance of specific nodes and GPUs. It can also help in troubleshooting any performance or access issues related to GPUs. The table provides a comprehensive view of the utilization of MPI ranks and OpenMP threads, with corresponding data for the hardware and runtime IDs for GPUs. This information can be used by researchers and engineers for optimizing their codes and ensuring efficient use of the Frontier supercomputer's resources. 
+
+ID|Description
+---|---
+MPI|MPI rank ID
+OMP|OpenMP thread ID
+HWT|CPU hardware thread the MPI rank or OpenMP thread ran on
+Node|Compute node the MPI rank or OpenMP thread ran on
+GPU_ID|GPU ID the MPI rank or OpenMP thread had access to
+RT_GPU_ID|The runtime GPU ID
+Bus_ID|The physical Bus ID associated with a GPU
+
+Table 33:
+The table provides a detailed overview of the Slurm options available for the Frontier supercomputer. The first row serves as a header for the two columns, "Slurm Option" and "Description". The first option listed under "Slurm Option" is "--gpus-per-task" which allows the user to specify the number of GPUs needed for a particular job on each task. This option requires the user to explicitly state the task count using the "-n" flag. The second option listed is "--gpu-bind=closest" which binds each task to the GPU(s) that are closest to it. In this case, "closest" refers to the GPU connected to the L3 where the MPI rank (message passing interface rank) is mapped to. This feature allows for optimized use of resources and potential performance improvement in parallel computing tasks. 
+
+|Slurm Option   |Description   |
+|---            |---           |
+|--gpus-per-task|Specify the number of GPUs required for the job on each task. This option requires an explicit task count, e.g. -n |
+|--gpu-bind=closest|Bind each task to the GPU(s) which are closest. Here, closest refers to the GPU connected to the L3 where the MPI rank is mapped to.|
+
+Table 34:
+The table provides a comprehensive overview of the Slurm options specifically for the Frontier supercomputer. The first row serves as a header, indicating that the table pertains to Slurm options and their respective descriptions. The second row presents the "ntasks-per-gpu" option, which specifies the number of MPI ranks that can concurrently access a single GPU. In other words, this option allows for efficient utilization of the GPUs on Frontier by dividing them among multiple MPI ranks. This table, in a concise manner, highlights an important feature of Frontier that enables optimum performance for users in scientific and research fields. 
+
+| Slurm Option  | Description                                                                 |
+|---------------|-----------------------------------------------------------------------------|
+| ntasks-per-gpu | Specifies the number of MPI ranks that will share access to a GPU on Frontier|
+
+Table 35:
+The table provides a detailed breakdown of the Slurm Option "-distribution". It specifies the distribution of MPI ranks across the compute nodes, sockets, and cores of the Frontier supercomputer. The default values for this option are block, cyclic, and cyclic which correspond to the distribution of MPI ranks across blocks, sockets, and cores respectively. This information gives users a better understanding of how their tasks are being distributed and how to optimize their usage of the Frontier supercomputer. 
+
+
+| Slurm Option | Description |
+| --- | --- |
+| --distribution=<value>[:<value>][:<value>]|Specifies the distribution of MPI ranks across compute nodes, sockets
+(L3 cache regions on Frontier), and cores, respectively. The default values are
+block:cyclic:cyclic, which is where the cyclic assignment comes from in the previous
+examples. |
+
+Table 36:
+The following table displays the specifications for the Frontier supercomputer. It is a highly advanced and powerful supercomputer that has the capability to perform a wide range of tasks. The first row of the table serves as the header and provides the categories for the data types being presented. The table shows the number of Flops (floating-point operations) that can be performed per clock cycle per compute unit (CU) for different data types. The lower the data type, the higher the number of Flops, with the highest being 1024 for both FP16 and BF16. This means that the Frontier supercomputer is specifically designed to handle calculations and tasks that require a high amount of precision and accuracy. It has 256 Flops for both FP64 and FP32, making it capable of performing complex calculations in double-precision and single-precision floating-point formats. Additionally, the table shows that the Frontier supercomputer has a significantly high Flops rate for the INT8 data type, at 1024. This indicates its impressive abilities in handling integer-based calculations. Overall, this table highlights the cutting-edge technology and immense computational power of the Frontier supercomputer.
+
+| Data Type | Flops/Clock/CU | 
+| --------- | -------------- | 
+| FP64      | 256            | 
+| FP32      | 256            | 
+| FP16      | 1024           | 
+| BF16      | 1024           | 
+| INT8      | 1024           |
+
+Table 37:
+The following table provides a comprehensive overview of the Frontier supercomputer and its different memory allocation options. The first row serves as the header for the table and includes the different allocators available. The first column lists the allocators, such as System Allocator (malloc,new,allocate), hipMallocManaged, hipHostMalloc, and hipMalloc. These allocators are then compared based on their initial physical location, which includes CPU DDR4 and GPU HBM. The table also illustrates the CPU access after GPU first touch, which is either a migration to CPU DDR4 or zero copy read/write over Infinity Fabric. Similarly, the default behavior for GPU access is shown for each allocator, which varies from migrating to GPU HBM on touch to zero copy read/write over Infinity Fabric. This table serves as a helpful reference for users to understand the various memory allocation options available on the Frontier supercomputer, allowing them to make an informed decision based on their specific needs.
+
+ |Allocator |Initial Physical Location |CPU Access after GPU First Touch |Default Behavior for GPU Access|
+ |----------|---------------------------|---------------------------------|--------------------------------|
+ |System Allocator (malloc, new, allocate, etc)|CPU DDR4|Migrate to CPU DDR4 on touch|Migrate to GPU HBM on touch|
+ |hipMallocManaged|CPU DDR4|Migrate to CPU DDR4 on touch|Migrate to GPU HBM on touch|
+ |hipHostMalloc|CPU DDR4|Local read/write|Zero copy read/write over Infinity Fabric|
+ |hipMalloc|GPU HBM|Zero copy read/write over Infinity Fabric|Local read/write|
+
+Table 38:
+The following table provides an overview of the different allocators available for the Frontier supercomputer. The first column lists the name of the allocator, followed by its initial physical location in the system. The third column describes the default behavior for CPU access, which is local read/write. In contrast, the fourth column explains the default behavior for GPU access, which is dependent on the allocator. The System Allocator, which includes functions such as malloc, new, and allocate, has local read/write access for CPU and Fatal Unhandled Page Fault for GPU. hipMallocManaged also has local read/write access for CPU, but enables zero copy read/write over Infinity Fabric for GPU. hipHostMalloc, similar to hipMallocManaged, provides local read/write access for CPU and enables zero copy read/write over Infinity Fabric for GPU. Finally, hipMalloc, specifically for GPU HBM, allows for zero copy read/write over Infinity Fabric for GPU, but has local read/write access for CPU. This table showcases the various options for memory allocation in the Frontier supercomputer, depending on the needs and capabilities of the user. 
+
+| Allocator | Initial Physical Location | Default Behavior for CPU Access | Default Behavior for GPU Access | 
+| ------ | ------ | ------ | ------ | 
+| System Allocator (malloc, new, allocate, etc) | CPU DDR4 | Local read/write | Fatal Unhandled Page Fault | 
+| hipMallocManaged | CPU DDR4 | Local read/write | Zero copy read/write over Infinity Fabric | 
+| hipHostMalloc | CPU DDR4 | Local read/write | Zero copy read/write over Infinity Fabric | 
+| hipMalloc | GPU HBM | Zero copy read/write over Infinity Fabric | Local read/write |
+
+Table 39:
+The table provides a comparison of two different flags for the hipHostMalloc() API in the Frontier supercomputer. The first flag, hipHostMallocDefault, results in a fine-grained allocation of memory, while the second flag, hipHostMallocNonCoherent, results in a coarse-grained allocation. This information is important for developers using the Frontier supercomputer, as it allows them to choose the flag that best fits their needs based on the desired level of granularity for memory allocation. This table serves as a useful resource for understanding the capabilities and options available for this specific API on the Frontier supercomputer.
+
+
+
+| API             | Flag                    | Results      |
+| --------------- | ----------------------- | ------------ |
+| hipHostMalloc() | hipHostMallocDefault    | Fine grained |
+| hipHostMalloc() | hipHostMallocNonCoherent| Coarse grained |
+
+Table 40:
+The table presents the different flags and results for the API function hipExtMallocWithFlags(), specifically for the Frontier supercomputer. The first row serves as a header and provides the names of the columns: API, Flag, and Result. The following rows list the different flags, including hipDeviceMallocDefault and hipDeviceMallocFineGrained, and the corresponding results of using them with the hipExtMallocWithFlags() function. These results are listed as "Coarse grained" and "Fine grained," respectively, indicating the level of granularity achieved with memory allocation. This table offers a clear and concise overview of the different options and outcomes available when using the hipExtMallocWithFlags() function on the Frontier supercomputer. In summary, the table portrays the capabilities of this API function and the potential impact of utilizing different flags for memory allocation. 
+
+| API                     | Flag                     | Result        |
+| ----------------------- | ------------------------ | ------------- |
+| hipExtMallocWithFlags() | hipDeviceMallocDefault   | Coarse grained|
+| hipExtMallocWithFlags() | hipDeviceMallocFinegrained| Fine grained  |
+
+Table 41:
+The table provided outlines the different memory allocation options for the Frontier supercomputer. The first column lists the different APIs, or application programming interfaces, which are used to allocate memory in a computer program. The second column, labeled "MemAdvice", provides information on how to use the given API. The third column, titled "Result", indicates the level of granularity for the memory allocation. The first row, labeled as the header, does not contain any information as it only serves as a reference for the table. The following rows provide details for the "hipMallocManaged()" and "malloc()" APIs, with and without the use of the "hipMemAdviseSetCoarseGrain" function, resulting in a "Fine grained" or "Coarse grained" memory allocation, respectively. This table showcases the various options available for memory allocation on the Frontier supercomputer.
+
+| API           | MemAdvice                               | Result        |
+|---------------|-----------------------------------------|---------------|
+| hipMallocManaged() |                                       | Fine grained  |
+| hipMallocManaged() | hipMemAdvise (hipMemAdviseSetCoarseGrain)| Coarse grained |
+| malloc()         |                                       | Fine grained  |
+| malloc()         | hipMemAdvise (hipMemAdviseSetCoarseGrain)| Coarse grained |
+
