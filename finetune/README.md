@@ -5,10 +5,10 @@ Our development is based on the chat application in DeepSpeedExamples(`#32083e5`
 - support for ZeRO++, which enables communication compression
 - custum dataset and launch support on Frontier 
 
-# FORGE support 
+## FORGE support 
 The multi-node FORGE fine-tuning configurations are provided for [step 1](./step1_supervised_finetuning/training_scripts/forge/multi_node) and [step 3](./step3_rlhf_finetuning/training_scripts/forge/multi_node)
 
-# ZeRO++ support
+## ZeRO++ support
 Add ZeRO++ and Flops profiler configuration in the main script, 
 ```bash
     ds_config['zero_optimization'] = {
