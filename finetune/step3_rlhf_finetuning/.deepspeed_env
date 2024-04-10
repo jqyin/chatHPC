@@ -1,0 +1,12 @@
+PATH=/lustre/orion/scratch/junqi/stf218/zero++/miniconda/envs/zero+-env/bin:/lustre/orion/scratch/junqi/stf218/zero++/miniconda/condabin:/lustre/orion/scratch/junqi/stf218/zero++/miniconda/bin:/opt/rocm-5.7.0/bin:/ccs/home/junqi/.cargo/bin:/sw/sources/hpss/bin:/sw/frontier/spack-envs/base/opt/cray-sles15-zen3/cce-15.0.0/darshan-runtime-3.4.0-t6el25xrwgfg5j65rdrhrs3qjp4ojssp/bin:/opt/cray/pe/mpich/8.1.23/ofi/crayclang/10.0/bin:/opt/cray/pe/mpich/8.1.23/bin:/opt/cray/pe/craype/2.7.19/bin:/opt/cray/pe/cce/15.0.0/binutils/x86_64/x86_64-pc-linux-gnu/bin:/opt/cray/pe/cce/15.0.0/binutils/cross/x86_64-aarch64/bin:/opt/cray/pe/cce/15.0.0/utils/x86_64/bin:/opt/cray/pe/cce/15.0.0/bin:/opt/cray/pe/cce/15.0.0/cce-clang/x86_64/bin:/opt/cray/pe/perftools/22.12.0/bin:/opt/cray/pe/papi/6.0.0.17/bin:/opt/cray/libfabric/1.15.2.0/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/sw/frontier/bin:/ccs/home/junqi/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/opt/c3/bin:/usr/lib/mit/bin:/opt/puppetlabs/bin:/sbin:/opt/cray/pe/bin:/ccs/home/junqi/.local/bin:/ccs/home/junqi/.globus-cli-virtualenv/bin
+LD_LIBRARY_PATH=/lustre/orion/scratch/junqi/stf218/pyt-nightly-rocm5.7/rccl-plugin-rocm570/lib:/opt/rocm-5.7.0/lib64:/opt/rocm-5.7.0/lib:/sw/frontier/spack-envs/base/opt/cray-sles15-zen3/cce-15.0.0/darshan-runtime-3.4.0-t6el25xrwgfg5j65rdrhrs3qjp4ojssp/lib:/opt/cray/pe/papi/6.0.0.17/lib64:/opt/cray/libfabric/1.15.2.0/lib64:/sw/rhea/udunits/2.1.24/rhel6.6_gnu4.4.7/lib
+CPATH=
+CUDAPATH=/opt/rocm-5.7.0
+TORCH_EXTENSIONS_DIR=/lustre/orion/scratch/junqi/stf218/frontier/DeepSpeedExamples/applications/DeepSpeed-Chat/deepspeed
+FI_CXI_ATS=0
+NCCL_SOCKET_IFNAME=hsn
+PYTORCH_ROCM_ARCH=gfx90a
+HF_DATASETS_CACHE=
+TRANSFORMERS_CACHE=
+https_proxy=http://proxy.ccs.ornl.gov:3128
+http_proxy=http://proxy.ccs.ornl.gov:3128
