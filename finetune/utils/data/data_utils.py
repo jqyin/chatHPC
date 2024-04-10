@@ -117,6 +117,7 @@ def get_raw_dataset_split_index(local_rank, output_path, dataset_name, seed,
             np.save(shuffle_idx_split_file_name,
                     shuffle_idx_split,
                     allow_pickle=True)
+    print(index_file_name)
     index = np.load(index_file_name, allow_pickle=True)
     return index.tolist()
 
@@ -265,7 +266,7 @@ def create_prompt_dataset(local_rank,
                           max_seq_len,
                           end_of_conversation_token="<|endoftext|>",
                           sft_only_data_path=[],
-                          reload=False):
+                          reload=True):
     """
     Creates the prompt dataset
     """
@@ -283,7 +284,9 @@ def create_prompt_dataset(local_rank,
     cache_found = os.path.isfile(train_fname) and os.path.isfile(eval_fname)
     buf_create_cache = torch.ByteTensor([not cache_found]).cuda()
     torch.distributed.all_reduce(buf_create_cache)
-
+ 
+    local_rank = local_rank%8
+    
     if local_rank <= 0 and (buf_create_cache.item() != 0 or reload):
         if len(data_path) == 1:  # Single dataset.
             train_dataset, eval_dataset = create_dataset(

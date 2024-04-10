@@ -85,6 +85,38 @@ class DeepSpeedRLHFEngine():
             'train_batch_size'] = self.args.per_device_training_batch_size * torch.distributed.get_world_size(
             ) * self.args.gradient_accumulation_steps_actor
 
+        ds_config['flops_profiler'] = {
+            "enabled": True,
+            "profile_step": 5,
+            "module_depth": -1,
+            "top_modules": 1,
+            "detailed": True,
+            "output_file": "log.flops",
+            }
+        ds_config['steps_per_print'] = 1 
+        ds_config['zero_optimization'] = {
+            "stage": 3,
+            "offload_param": {
+                "device": "none"
+            },
+            "offload_optimizer": {
+                "device": "none"
+            },
+            "stage3_param_persistence_threshold": 1.000000e+04,
+            "stage3_max_live_parameters": 3.000000e+07,
+            "stage3_prefetch_bucket_size": 3.000000e+07,
+            "memory_efficient_linear": False,
+            "allgather_partitions": True,
+            "allgather_bucket_size": 500000000,
+            "overlap_comm": True,
+            "reduce_scatter": True,
+            "reduce_bucket_size": 500000000,
+            "contiguous_gradients": True,
+            #"zero_quantized_weights": True,
+            "zero_hpz_partition_size": 8,
+            #"zero_quantized_gradients": True 
+          }
+      
         # Model
         actor_model = create_hf_model(
             model_class=AutoModelForCausalLM,

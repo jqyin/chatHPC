@@ -199,6 +199,10 @@ def main():
 
     args.global_rank = torch.distributed.get_rank()
 
+    #if args.global_rank == 0: 
+    #    os.environ['NCCL_DEBUG'] = 'INFO'
+    #    os.environ['NCCL_DEBUG_SUBSYS'] = 'COLL'
+
     ds_config = get_train_ds_config(offload=args.offload,
                                     stage=args.zero_stage,
                                     enable_tensorboard=args.enable_tensorboard,
@@ -209,7 +213,43 @@ def main():
     ds_config[
         'train_batch_size'] = args.per_device_train_batch_size * torch.distributed.get_world_size(
         ) * args.gradient_accumulation_steps
-
+    ds_config['flops_profiler'] = {
+        "enabled": True,
+        "profile_step": 50,
+        "module_depth": -1,
+        "top_modules": 1,
+        "detailed": True,
+        "output_file": "log.flops",
+        }
+     
+    ds_config['zero_optimization'] = {
+        "stage": 3,
+        "offload_param": {
+            "device": "none"
+        },
+        "offload_optimizer": {
+            "device": "none"
+        },
+        "stage3_param_persistence_threshold": 1.000000e+04,
+        "stage3_max_live_parameters": 3.000000e+07,
+        "stage3_prefetch_bucket_size": 3.000000e+07,
+        "memory_efficient_linear": False,
+        "allgather_partitions": True,
+        "allgather_bucket_size": 500000000,
+        "overlap_comm": True,
+        "reduce_scatter": True,
+        "reduce_bucket_size": 500000000,
+        "contiguous_gradients": True,
+        #"zero_quantized_weights": True,
+        #"zero_hpz_partition_size": 8,
+        #"zero_quantized_gradients": True 
+      }
+    #ds_config['comms_logger'] = {
+    #    "enabled": True,
+    #    "verbose": True,
+    #    "prof_all": True,
+    #    "debug": False
+    #}
     # If passed along, set the training seed now.
     set_random_seed(args.seed)
 
@@ -233,7 +273,8 @@ def main():
     # Prepare the data
     train_phase = 1
     train_dataset, eval_dataset = create_prompt_dataset(
-        args.local_rank,
+        #args.local_rank,
+        args.global_rank,
         args.data_path,
         args.data_split,
         args.data_output_path,
@@ -331,7 +372,9 @@ def main():
                 )
             model.backward(loss)
             model.step()
-
+            #if step == 0:
+            #    break 
+        #break
         # Evaluate perplexity on the validation set.
         print_rank_0(
             f"***** Evaluating perplexity, Epoch {epoch+1}/{args.num_train_epochs} *****",
@@ -340,7 +383,8 @@ def main():
         print_rank_0(f"ppl: {perplexity}", args.global_rank)
         model.tput_timer.update_epoch_count()
 
-    if args.output_dir is not None:
+
+    if False: #args.output_dir is not None:
         print_rank_0('saving the final model ...', args.global_rank)
         model = convert_lora_to_linear_layer(model)
 

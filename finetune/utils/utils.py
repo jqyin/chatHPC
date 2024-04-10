@@ -53,6 +53,16 @@ def get_tokenizer(model_name_or_path, fast_tokenizer=True):
             # tokenizer.add_special_tokens({'pad_token': tokenizer.eos_token})
             tokenizer.add_special_tokens({'pad_token': '[PAD]'})
             tokenizer.padding_side = 'right'
+    elif "forge" in model_name_or_path:
+        from transformers import GPTNeoXTokenizerFast  
+        tokenizer = GPTNeoXTokenizerFast.from_pretrained( 
+            model_name_or_path, fast_tokenizer=fast_tokenizer)
+        tokenizer.pad_token = tokenizer.eos_token
+        if tokenizer.pad_token is None:
+            # assert tokenizer.eos_token is not None
+            # tokenizer.add_special_tokens({'pad_token': tokenizer.eos_token})
+            tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+            tokenizer.padding_side = 'right'
     else:
         tokenizer = AutoTokenizer.from_pretrained(
             model_name_or_path, fast_tokenizer=fast_tokenizer)
@@ -68,7 +78,10 @@ def load_hf_tokenizer(model_name_or_path, fast_tokenizer=True):
         model_json = os.path.join(model_name_or_path, "config.json")
         if os.path.exists(model_json):
             model_json_file = json.load(open(model_json))
-            model_name = model_json_file["_name_or_path"]
+            try:
+                model_name = model_json_file["_name_or_path"]
+            except:
+                model_name = model_name_or_path
             tokenizer = get_tokenizer(model_name,
                                       fast_tokenizer=fast_tokenizer)
     else:
