@@ -1,0 +1,62 @@
+#!/bin/bash -l
+#SBATCH -J test
+#SBATCH -t 2:00:00
+#SBATCH -A stf218
+#SBATCH -N 32
+#SBATCH -C nvme
+#SBATCH -q debug
+#SBATCH --exclusive
+#SBATCH --ntasks-per-node=8
+#SBATCH -o chat.o%j
+#SBATCH -e chat.e%j
+
+. env-zero+.sh 
+echo "PATH=$PATH" > .deepspeed_env
+echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH" >> .deepspeed_env
+echo "CPATH=$CPATH" >> .deepspeed_env
+echo "CUDAPATH=${ROCM_PATH}" >> .deepspeed_env
+echo "TORCH_EXTENSIONS_DIR=$(pwd)/deepspeed" >> .deepspeed_env
+#echo "NCCL_DEBUG=INFO" >> .deepspeed_env
+#echo "NCCL_DEBUG_SUBSYS=COLL" >> .deepspeed_env
+echo "FI_CXI_ATS=0" >> .deepspeed_env
+echo "NCCL_SOCKET_IFNAME=hsn" >> .deepspeed_env
+echo "PYTORCH_ROCM_ARCH=gfx90a" >> .deepspeed_env
+#echo "FI_LOG_LEVEL=debug" >> .deepspeed_env
+
+echo "HF_DATASETS_CACHE=$HF_DATASETS_CACHE" >> .deepspeed_env
+echo "TRANSFORMERS_CACHE=$TRANSFORMERS_CACHE" >> .deepspeed_env
+cp .deepspeed_env training/step3_rlhf_finetuning/
+
+scontrol show hostnames $SLURM_NODELIST > hostfile
+input="hostfile"
+readarray -t arr <"$input"
+
+rm training/step3_rlhf_finetuning/hostfile
+for row in "${arr[@]}";do
+  row_array=(${row})
+  hostname=${row_array[0]}
+
+  cmd="ssh ${hostname} ${ROCM_PATH}/bin/rocm-smi"
+  echo $cmd
+  echo "$hostname slots=8" >> training/step3_rlhf_finetuning/hostfile
+done
+
+
+bash monitor.sh >>  log.gpu.n${SLURM_NNODES}.${SLURM_JOB_ID} &
+
+#step1
+#python3 train.py --actor-model forge-m2-final --step 1 --deployment-type multi_node
+
+#step2
+#python3 train.py --reward-model forge-s4  --step 2 --deployment-type single_node
+
+#step3
+python3 train.py --actor-model forge-m2-final --reward-model forge-s4  --step 3 --deployment-type multi_node
+
+
+#prof
+#srun -N 16 -n 128 --ntasks-per-node=8 -c7 --gpus-per-node=8 --gpu-bind=closest bash -c "source setup_ddp.sh; ./cmdwrapper.sh"
+
+
+kill %1
+
