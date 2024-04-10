@@ -7,11 +7,40 @@ OLCF credentials.
 
 ## FastChat Framework
 
-ChatHPC UI uses the [FastChat](https://github.com/lm-sys/FastChat) framework, we add following additional features: 
+ChatHPC UI uses the [FastChat](https://github.com/lm-sys/FastChat) framework (`#0a5ad3e`), we add following additional features: 
 
 - Support for [FORGE](https://github.com/at-aaims/forge), which are LLMs pre-trained on scientific publications.  
-- Support for retrieval augmented generation (RAG). We use our fined-tuned [UAE](https://huggingface.co/WhereIsAI/UAE-Large-V1) model as an embedder to retrieve HPC documents, and then add the documents as context to the original prompt.
+```python
+class ChatHPCAdapter(BaseModelAdapter):
+    """ The model adapter for ChatHPC and Forge models """
+
+    def match(self, model_path: str):
+        model_name = model_path.split("/")[-1].lower()
+        return model_name.startswith("chathpc") or model_name.startswith("forge")
+
+    def load_model(self, model_path: str, from_pretrained_kwargs: dict):
+        from transformers import GPTNeoXForCausalLM, GPTNeoXTokenizerFast
+
+        revision = from_pretrained_kwargs.get("revision", "main")
+        tokenizer = GPTNeoXTokenizerFast.from_pretrained(model_path,
+                revision=revision,
+                use_fast=True)
+        model = GPTNeoXForCausalLM.from_pretrained(model_path,
+                low_cpu_mem_usage=True,
+                **from_pretrained_kwargs)
+        #tokenizer.pad_token = tokenizer.eos_token
+        model.config.end_token_id = tokenizer.eos_token_id
+        model.config.pad_token_id = model.config.eos_token_id
+        return model, tokenizer
+
+    def get_default_conv_template(self, model_path: str) -> Conversation:
+        return get_conv_template("chathpc")
+
+```
+- Support for retrieval augmented generation (RAG). We use our fined-tuned [UAE](https://huggingface.co/WhereIsAI/UAE-Large-V1) model as an embedder to retrieve HPC documents, and then add the documents as context to the original prompt. The main implementations are in this added [file](./FastChat/fastchat/model/model_chathpc.py) for chatHPC. 
+
 - Context logging and performance measurement. We save the context in the logs and get the response time breakdowns for tuning and debugging. 
+
 
 ## System Requirements
 ChatHPC UI is designed to be deployed on a [Kubernetes](https://kubernetes.io/) cluster. The
