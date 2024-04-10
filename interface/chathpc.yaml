@@ -1,0 +1,338 @@
+### Config ###
+# Config map containing some shared environment variables for the various pods
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: stf218-app
+  name: chathpc-config
+data:
+  # To set the models that are actually loaded, set `CHATHPC_MODEL` in the controller pod to a comma
+  # separated list of all the models you want. Then have one worker pod for each model, with
+  # `CHATHPC_MODEL` in each worker set to a single model.
+
+  CHATHPC_MODELS_REMOTE_DIR: "/lustre/orion/stf218/proj-shared/data/lake/chathpc/models/"
+  CHATHPC_MODELS_LOCAL_DIR: "/vol/data/models"
+
+  # UI will log conversations here
+  LOGDIR: "/vol/data/log"
+
+  CHATHPC_CONTROLLER_HOST: "chathpc.stf218-app.svc.cluster.local"
+  CHATHPC_CONTROLLER_PORT: "21001"
+  CHATHPC_WORKER_PORT: "21002"
+  CHATHPC_API_PORT: "8080"
+  CHATHPC_API_ROOT_PATH: "/chathpc/api"
+  CHATHPC_UI_PORT: "8081"
+  CHATHPC_UI_ROOT_PATH: "/chathpc"
+
+  # Move the model cache directory (Since we are using local models there should be anything here)
+  HF_HOME: "/vol/data/hf_home"
+  TRANSFORMERS_CACHE: "/vol/data/hf_home"
+  HF_DATASETS_CACHE: "/vol/data/hf_home"
+  SENTENCE_TRANSFORMERS_HOME: "/vol/data/hf_home" 
+  FASTCHAT_WORKER_API_EMBEDDING_BATCH_SIZE: "1"
+  # Fix matplotlib warning
+  MPLCONFIGDIR: "/vol/data/matplotlib"
+
+
+
+### Volume shared between all the pods ###
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: chathpc-data
+  namespace: stf218-app
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 128Gi
+  storageClassName: netapp-nfs
+  volumeMode: Filesystem
+
+
+
+### Controller Networking ###
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: chathpc
+  namespace: stf218-app
+  labels:
+    app: chathpc
+    role: controller
+spec:
+  ports:
+    - name: api
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+    - name: ui
+      protocol: TCP
+      port: 8081
+      targetPort: 8081
+    # Controller shouldn't be exposed with a route/ingress, its internal to the cluster only
+    # Access with http://chathpc.stf218-app.svc.cluster.local:21001
+    - name: controller
+      protocol: TCP
+      port: 21001
+      targetPort: 21001
+  type: ClusterIP
+  selector:
+    app: chathpc
+    role: controller
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: chathpc
+  namespace: stf218-app
+  # annotations:
+    # This doesn't work in OpenShift
+    # nginx.ingress.kubernetes.io/rewrite-target: / 
+    # ccs.ornl.gov/requireAuth: "true" 
+spec:
+  # ingressClassName: nginx
+  rules:
+  - host: chathpc-api.apps.marble.ccs.ornl.gov
+    http:
+      paths:
+      # I'd like to use prefixes here, but I can't do path stripping in our Ingress configs, and I
+      # can't add a prefix to the api's made by FastChat
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: chathpc
+            port:
+              name: api
+  - host: chathpc.apps.marble.ccs.ornl.gov
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: chathpc
+            port:
+              name: ui
+
+
+
+### Controller ###
+# The controller pod coordinates the multiple workers and also runs the API & UI.
+# It doesn't need GPUs or much RAM.
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: chathpc-controller
+  namespace: stf218-app
+  labels:
+    app: chathpc
+    role: controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chathpc
+      role: controller
+  serviceName: chathpc
+  template:
+    metadata:
+      labels:
+        app: chathpc
+        role: controller
+      annotations:
+        ccs.ornl.gov/fs: orion
+    spec:
+      volumes:
+      - name: chathpc-data
+        persistentVolumeClaim:
+          claimName: chathpc-data
+      terminationGracePeriodSeconds: 15
+      containers:
+        - name: main
+          image: registry.apps.marble.ccs.ornl.gov/stf218-app/chathpc:latest
+          env:
+            - name: CHATHPC_MODELS # The name of all the models to load 
+              value: "forge-m-instruct-base1"
+            - name: CHATHPC_ROLE
+              value: controller
+          envFrom:
+            - secretRef: # For MINIO creds
+                name: prod-infra-envconfig-service-creds
+            - configMapRef:
+                name: chathpc-config
+          resources:
+            requests:
+              cpu: 1000m
+              memory: 1Gi
+            limits:
+              cpu: 2000m
+              memory: 2Gi
+          volumeMounts:
+            - name: chathpc-data
+              mountPath: /vol/data
+
+
+
+### Workers ###
+# These actually run the models
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: chathpc-workers
+  namespace: stf218-app
+  labels:
+    app: chathpc
+    role: worker
+spec:
+  type: ClusterIP
+  selector:
+    app: chathpc
+    role: worker
+  ports:
+    - name: worker
+      protocol: TCP
+      port: 21002
+      targetPort: 21002
+
+# Duplicate this to add another model with different resource requirements
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: chathpc-worker-1
+  namespace: stf218-app
+  labels:
+    app: chathpc
+    role: workers
+    worker_set: "1"
+spec:
+  selector:
+    matchLabels:
+      app: chathpc
+      role: worker
+      worker_set: "1"
+  replicas: 1
+  serviceName: chathpc-workers
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: chathpc
+        role: worker
+        worker_set: "1"
+    spec:
+      volumes:
+        - name: chathpc-data
+          persistentVolumeClaim:
+            claimName: chathpc-data
+        # If you have more than 1 GPU the vllm_worker warns that /dev/shm is too small and will
+        # affect performance. This volume hack is how you can increase /dev/shm on k8s.
+        # See https://medium.com/dive-into-ml-ai/62aae0468a33
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 2Gi
+      containers:
+        - name: main
+          image: registry.apps.marble.ccs.ornl.gov/stf218-app/chathpc:latest
+          env:
+            - name: CHATHPC_ROLE
+              value: worker
+            - name: CHATHPC_NUM_GPUS
+              value: "2"
+            - name: CHATHPC_MODELS # The name of the model to run on this worker
+              value: "forge-m-instruct-base1"
+            - name: RAY_memory_monitor_refresh_ms
+              value: "0"
+          envFrom:
+            - configMapRef:
+                name: chathpc-config
+          resources:
+            requests:
+              cpu: 2000m
+              # VLLM worker needs about 20G
+              memory: 10Gi
+            limits:
+              cpu: 4000m
+              memory: 20Gi
+              nvidia.com/gpu: "3"
+          volumeMounts:
+            - name: chathpc-data
+              mountPath: /vol/data
+            - name: dshm
+              mountPath: /dev/shm
+
+
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: chathpc-worker-2
+  namespace: stf218-app
+  labels:
+    app: chathpc
+    role: workers
+    worker_set: "2"
+spec:
+  selector:
+    matchLabels:
+      app: chathpc
+      role: worker
+      worker_set: "2"
+  replicas: 0
+  serviceName: chathpc-workers
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: chathpc
+        role: worker
+        worker_set: "2"
+    spec:
+      volumes:
+        - name: chathpc-data
+          persistentVolumeClaim:
+            claimName: chathpc-data
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 2Gi
+      containers:
+        - name: main
+          image: registry.apps.marble.ccs.ornl.gov/stf218-app/chathpc:latest
+          env:
+            - name: CHATHPC_ROLE
+              value: worker
+            - name: CHATHPC_NUM_GPUS
+              value: "2"
+            - name: CHATHPC_MODELS # The name of the model to run on this worker
+              value: "lmsys/vicuna-7b-v1.5"
+            - name: RAY_memory_monitor_refresh_ms
+              value: "0"
+          envFrom:
+            - configMapRef:
+                name: chathpc-config
+          resources:
+            requests:
+              cpu: 1000m
+              # VLLM worker needs about 20G
+              memory: 8Gi
+            limits:
+              cpu: 1000m
+              memory: 8Gi
+              nvidia.com/gpu: "2"
+          volumeMounts:
+            - name: chathpc-data
+              mountPath: /vol/data
+            - name: dshm
+              mountPath: /dev/shm
