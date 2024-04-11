@@ -1,7 +1,7 @@
 # chatHPC: Empowering HPC Users with Large Language Models 
 This repository contains the implementation of chatHPC pipeline, including the end-to-end velopment and deployment cycle of LLM applications on HPC. 
 
-<img src="./chathpc.png" width="600">
+![chathpc](./chathpc.png)
 
 ## Data sources and preprocessing
 HPC documentations and OLCF help tickets (contains private and sentitive information)
@@ -42,9 +42,9 @@ Both web and API interfaces to fine-tuned models are provided. The detailed step
 ## Evaluation 
 We evaluate following component of the pipeline 
 
-- [model](./eval/model) performance
-- [retriever](./eval/retriever) accuracy
-- [continuous learning](./eval/cl)
+- [model](./eval/model/run.sh) performance
+- [retriever](./eval/retriever/eval_embedder.py) accuracy
+- [continuous learning](./eval/cl/run.sh)
 
 The detailed steps are provided [here](./eval/README.md) 
 
