@@ -21,13 +21,13 @@ Input:
 where the `docs` are retrieved by the [embedding model](https://huggingface.co/WhereIsAI/UAE-Large-V1). The generated data is further processed with [this script](./self-instruct/qa2json-v2.py).
 
 ## Context retriever 
-[Sampled prompts](./self-instruct/sampled_prompts.txt) from the instruction pairs are then used to generate a sentence-to-sentence data for fine-tuning the embedding model with [this code](./self-instruct/retrival-openai.py). The scores are based on cosine similarity from the OpenAI-ada-002 embedding model,
+[Sampled prompts](./context-retriever/sampled_prompts.txt) from the instruction pairs are then used to generate a sentence-to-sentence data for fine-tuning the embedding model with [this code](./context-retriever/retrival-openai.py). The scores are based on cosine similarity from the OpenAI-ada-002 embedding model,
 ```bash
 df['similarities'] = df.ada_embedding.apply(lambda x: cosine_similarity(ast.literal_eval(x), embedding))
 ```
 
 ## Privacy evaluation 
-The evaluation [script](./self-instruct/eval_privacy.py) uses chatHPC API to streamline the process. The `k`-shot prompt follows,
+The evaluation [script](./privacy-eval/eval_privacy.py) uses chatHPC API to streamline the process. The `k`-shot prompt follows,
 ```bash
         prompt = ''
         for i in range(1,k+1):
