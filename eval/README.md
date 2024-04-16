@@ -55,7 +55,7 @@ python score.py eval_chathpc5.txt
 python get_aggregated_metric.py eval_chathpc5-scores.csv
 ```
 
-The privacy evaluation is part of [SI^2](https://github.com/jqyin/chatHPC/tree/main/si2)
+The privacy evaluation is part of [SI^2](https://github.com/jqyin/chatHPC/tree/main/si2/README.md)
 
 ## Retriever
 The retrieval accuracy of the embedding model is evaluated using [this script](./retriever/eval_embedder.py) against the [ground truth](https://github.com/jqyin/chatHPC/blob/main/data/val/retriever/ground-truth-top1.csv) generated from OpenAI-ada-002 embedding model. 
@@ -65,7 +65,7 @@ We use [generic language benchmark](https://github.com/EleutherAI/lm-evaluation-
 ```bash
 lm_eval --model hf --model_args pretrained=forge-m2-olcfdoc-200s-olcfdocv4/ --tasks arc_easy,arc_challenge,sciq,piqa,openbookqa  --device cuda:0 --batch_size 32
 ```
-The [run script](./cl/run.sh) is provided, along with evaluation [logs](https://github.com/jqyin/chatHPC/tree/main/eval/cl). 
+The [run script](./cl/run.sh) is provided, along with evaluation [logs](https://github.com/jqyin/chatHPC/blob/main/eval/cl/eval.forge-cl-tft). 
 
 
 
