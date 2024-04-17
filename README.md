@@ -50,3 +50,11 @@ The detailed steps are provided [here](./eval/README.md)
 
 ## Results 
 The plots of the results are generated using this [script](./plot.ipynb), and the corresponding raw job logs can be [downloaded](https://www.dropbox.com/scl/fo/xscwgb8o1d2c47kjwuap1/ABpnF0u4hE8i7JMMLy-7AgI?rlkey=p9fnhfyoqu8o7vh1jbgn6tnms&dl=0)
+
+Fine-tuned FORGE-13B model (HF format), Retriever (based on [UAE](https://huggingface.co/WhereIsAI/UAE-Large-V1)), and embedding database (ChromaDB format) on HPC documents and OLCF help tickets: 
+
+| Model/DB|                                          Link                                         |
+|:-------:|:-------------------------------------------------------------------------------------:|
+|FORGE-13B| [download](https://www.dropbox.com/scl/fo/a7250hpc6t3b6l56afse2/AJePED0JO6OylsrciHU88Js?rlkey=47lsade5nlckooorpbc6mws06&dl=0) |
+|Retriever| [download](https://www.dropbox.com/scl/fo/iqfmq8zcrt7cq2oaa4g51/AFJpiQq5c2lbROkNABu78xQ?rlkey=5nfnvb9ee1ekhd626s9me8qk4&dl=0) |
+|emb DB   | [download](https://www.dropbox.com/scl/fo/dw4j0lrc66ie3418ff3u0/AN2RP3T2BqvHESl1VPu-Yok?rlkey=xllw8t5lhqayy16tj9lk4zcvg&dl=0) |
