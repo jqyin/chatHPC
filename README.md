@@ -58,3 +58,20 @@ Fine-tuned FORGE-13B model (HF format), Retriever (based on [UAE](https://huggin
 |FORGE-13B| [download](https://www.dropbox.com/scl/fo/a7250hpc6t3b6l56afse2/AJePED0JO6OylsrciHU88Js?rlkey=47lsade5nlckooorpbc6mws06&dl=0) |
 |Retriever| [download](https://www.dropbox.com/scl/fo/iqfmq8zcrt7cq2oaa4g51/AFJpiQq5c2lbROkNABu78xQ?rlkey=5nfnvb9ee1ekhd626s9me8qk4&dl=0) |
 |emb DB   | [download](https://www.dropbox.com/scl/fo/dw4j0lrc66ie3418ff3u0/AN2RP3T2BqvHESl1VPu-Yok?rlkey=xllw8t5lhqayy16tj9lk4zcvg&dl=0) |
+
+## Reference 
+```text
+@article{Yin2024,
+  author = {Junqi Yin and Jesse Hines and Emily Herron and Tirthankar Ghosal and Hong Liu and Suzanne Prentice and Vanessa Lama and Feiyi Wang},
+  title = {chatHPC: Empowering HPC users with large language models},
+  journal = {The Journal of Supercomputing},
+  volume = {81},
+  number = {1},
+  pages = {194},
+  year = {2024},
+  month = {November},
+  doi = {10.1007/s11227-024-06637-1},
+  url = {https://doi.org/10.1007/s11227-024-06637-1},
+  issn = {1573-0484}
+}
+```
